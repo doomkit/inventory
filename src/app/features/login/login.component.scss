@@ -1,0 +1,60 @@
+@import 'src/styles/abstracts/variables';
+@import 'src/styles/abstracts/mixins';
+
+.page {
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.box-wrapper {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  padding: 80px 40px;
+
+  @include backgroundImage('src/assets/img/bg-oval.svg');
+}
+
+.login {
+  height: 500px;
+  width: 90%;
+  max-width: 800px;
+  padding: 15px;
+  box-shadow: 0 0 40px 0px $nord4;
+  background-color: $white;
+  border-radius: 6px;
+
+  &.columns {
+    .column:first-child {
+      // Hide column with image for small screens
+      @media only screen and (max-width: 780px) {
+        display: none;
+      }
+    }
+  }
+}
+
+.login--image {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+
+  @include backgroundImage('src/assets/img/inventory.jpg');
+}
+
+.login--form {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  input:not([type='button']) {
+    margin: 40px 0 15px 0;
+  }
+}
