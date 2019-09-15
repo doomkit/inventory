@@ -1,0 +1,17 @@
+@font-face {
+  font-family: 'Quicksand';
+  font-style: normal;
+  font-weight: normal;
+  src: url('src/assets/fonts/QuicksandRegular.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Quicksand';
+  font-style: normal;
+  font-weight: bold;
+  src: url('src/assets/fonts/QuicksandSemiBold.ttf') format('truetype');
+}
+
+body {
+  font-family: 'Quicksand', sans-serif;
+}
