@@ -3,7 +3,7 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
 @Component({
   selector: 'app-button',
   template: `
-    <button type="button" (click)="triggerClick()" disabled>
+    <button type="button" (click)="triggerClick()" [disabled]="disabled">
       {{ text }}
     </button>
   `,
@@ -11,6 +11,7 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
 })
 export class ButtonComponent {
   @Input() text: string;
+  @Input() disabled: boolean;
   @Output() trigger: EventEmitter<any> = new EventEmitter<any>();
 
   triggerClick() {

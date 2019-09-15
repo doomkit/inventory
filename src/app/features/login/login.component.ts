@@ -1,5 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Component } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { FormControl, Validators } from '@angular/forms';
+import { UserService } from '@app/core/services';
+import { AuthGuard } from '@app/core/auth/auth.guard';
 
 @Component({
   selector: 'app-login',
@@ -26,9 +29,11 @@ import { ActivatedRoute } from '@angular/router';
                 type="text"
                 class="input"
                 (keydown)="onEnterPress($event)"
+                [formControl]="username"
               />
               <app-button
                 [text]="'Continue'"
+                [disabled]="!username.valid"
                 (trigger)="contnue()"
               ></app-button>
             </form>
@@ -39,17 +44,29 @@ import { ActivatedRoute } from '@angular/router';
   `,
   styleUrls: ['./login.component.scss']
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent {
+  username: FormControl;
   title = 'Welcome to Inventory!';
 
-  constructor(private route: ActivatedRoute) {
+  constructor(
+    private route: ActivatedRoute,
+    private router: Router,
+    private userService: UserService,
+    private authService: AuthGuard
+  ) {
+    this.username = new FormControl('', [
+      Validators.required,
+      Validators.minLength(3)
+    ]);
+    if (authService.canActivate) {
+      this.username.setValue(userService.username);
+      this.contnue();
+    }
     const fromUrl = this.route.snapshot.queryParams.from;
     if (fromUrl) {
       this.title = 'Welcome back!';
     }
   }
-
-  ngOnInit() {}
 
   onEnterPress(event) {
     if (event.key === 'Enter') {
@@ -59,6 +76,9 @@ export class LoginComponent implements OnInit {
   }
 
   contnue() {
-    alert('boom');
+    if (this.username.valid) {
+      this.userService.username = this.username.value;
+      this.router.navigate(['/dashboard']);
+    }
   }
 }
