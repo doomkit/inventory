@@ -14,3 +14,9 @@ h3,
 p {
   margin: 0;
 }
+
+.input,
+.input:focus {
+  box-shadow: none;
+  font-family: inherit;
+}
