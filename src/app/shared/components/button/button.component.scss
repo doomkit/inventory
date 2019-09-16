@@ -11,9 +11,10 @@ button {
   color: white;
   background: $blue;
   font: {
-    size: 12px;
-    weight: bold;
+    size: 14px;
   }
+  letter-spacing: 1px;
+  text-transform: capitalize;
   cursor: pointer;
   transition: all 0.25s ease;
 
