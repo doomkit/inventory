@@ -1,6 +1,6 @@
 import { Action } from '@ngrx/store';
 
-import { Item } from '../../models';
+import { Item } from '@core/models';
 
 // Load stock items
 export const LOAD_ITEMS = '[Stock] Load Items';
