@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { UserService } from './services';
 import { AuthGuard } from './auth/auth.guard';
+
 import { FooterComponent } from './components';
 
 @NgModule({
