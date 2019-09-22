@@ -12,6 +12,11 @@
 
 .not-found-image {
   width: 100%;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 0 20px;
 
   @include backgroundImage('src/assets/img/404.svg');
 
