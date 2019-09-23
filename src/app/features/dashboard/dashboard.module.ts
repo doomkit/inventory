@@ -1,9 +1,11 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
-import { SharedModule } from '@shared/shared.module';
-import { DashboardComponent } from './dashboard.component';
 import { StoreModule } from '@ngrx/store';
+
+import { SharedModule } from '@shared/shared.module';
+
+import { DashboardComponent } from './dashboard.component';
 
 const routes: Routes = [
   {
@@ -26,7 +28,17 @@ const routes: Routes = [
     CommonModule,
     RouterModule.forChild(routes),
     SharedModule,
-    StoreModule.forRoot({})
+    StoreModule.forRoot(
+      {},
+      {
+        runtimeChecks: {
+          strictStateImmutability: true,
+          strictActionImmutability: true,
+          strictStateSerializability: true,
+          strictActionSerializability: true
+        }
+      }
+    )
   ],
   declarations: [DashboardComponent]
 })
