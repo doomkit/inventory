@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { Breadcrumb } from '@app/core/models';
+import { UrlSegment, Router } from '@angular/router';
 
 @Component({
   selector: 'app-breadcrumb',
@@ -10,7 +10,7 @@ import { Breadcrumb } from '@app/core/models';
           *ngFor="let crumb of breadcrumbs; let lastcrumb = last"
           [ngClass]="{ 'is-active': lastcrumb }"
         >
-          <a [attr.href]="crumb.url">{{ crumb.name | titlecase }}</a>
+          <a (click)="navigateToCrumb(crumb)">{{ crumb.path | titlecase }}</a>
         </li>
       </ul>
     </nav>
@@ -18,5 +18,19 @@ import { Breadcrumb } from '@app/core/models';
   styleUrls: ['./breadcrumb.component.scss']
 })
 export class BreadcrumbComponent {
-  @Input() breadcrumbs: Breadcrumb[];
+  @Input() breadcrumbs: UrlSegment[];
+
+  constructor(private router: Router) {}
+
+  navigateToCrumb(crumb: UrlSegment) {
+    let path = '/';
+    for (const segment of this.breadcrumbs) {
+      path = path + segment.path;
+      if (segment.path === crumb.path) {
+        break;
+      }
+      path = path + '/';
+    }
+    this.router.navigate([path]);
+  }
 }
