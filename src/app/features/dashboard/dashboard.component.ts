@@ -16,6 +16,7 @@ import { AuthGuard } from '@core/auth/auth.guard';
       <app-breadcrumb [breadcrumbs]="breadcrumbs"></app-breadcrumb>
       <a routerLink="stock">Stock</a>
       <button (click)="logOut()">Log out</button>
+      <router-outlet></router-outlet>
     </div>
   `,
   styleUrls: ['./dashboard.component.scss']

@@ -1,8 +1,8 @@
-import * as fromItems from '../actions/items.action';
-import { Item } from '@core/models';
+import * as fromItems from '../actions/stock-items.action';
+import { StockItem } from '@core/models';
 
 export interface ItemState {
-  data: Item[];
+  data: StockItem[];
   loaded: boolean;
   loading: boolean;
 }

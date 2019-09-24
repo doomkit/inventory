@@ -1,6 +1,6 @@
 import { Action } from '@ngrx/store';
 
-import { Item } from '@core/models';
+import { StockItem } from '@core/models';
 
 // Load stock items
 export const LOAD_ITEMS = '[Stock] Load Items';
@@ -18,7 +18,7 @@ export class LoadItemsFail implements Action {
 
 export class LoadItemsSuccess implements Action {
   readonly type = LOAD_ITEMS_SUCCESS;
-  constructor(public payload: Item[]) {}
+  constructor(public payload: StockItem[]) {}
 }
 
 // Action types
