@@ -1,22 +1,35 @@
 import * as fromItems from '../actions/stock-items.action';
 import { StockItem } from '@core/models';
 
-export interface ItemState {
+export interface StockItemState {
   data: StockItem[];
   loaded: boolean;
   loading: boolean;
 }
 
-export const initialState: ItemState = {
-  data: [],
+export const initialState: StockItemState = {
+  data: [
+    {
+      id: 0,
+      name: 'Item One'
+    },
+    {
+      id: 1,
+      name: 'Item Two'
+    },
+    {
+      id: 2,
+      name: 'Item Three'
+    }
+  ],
   loaded: false,
   loading: false
 };
 
 export function reducer(
-  state: ItemState = initialState,
+  state: StockItemState = initialState,
   action: fromItems.ItemAction
-): ItemState {
+): StockItemState {
   switch (action.type) {
     case fromItems.LOAD_ITEMS: {
       return {
@@ -41,3 +54,7 @@ export function reducer(
   }
   return state;
 }
+
+export const getStockItemsLoading = (state: StockItemState) => state.loading;
+export const getStockItemsLoaded = (state: StockItemState) => state.loaded;
+export const getStockItems = (state: StockItemState) => state.data;
