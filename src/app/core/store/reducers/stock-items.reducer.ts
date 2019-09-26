@@ -8,20 +8,7 @@ export interface StockItemState {
 }
 
 export const initialState: StockItemState = {
-  data: [
-    {
-      id: 0,
-      name: 'Item One'
-    },
-    {
-      id: 1,
-      name: 'Item Two'
-    },
-    {
-      id: 2,
-      name: 'Item Three'
-    }
-  ],
+  data: [],
   loaded: false,
   loading: false
 };

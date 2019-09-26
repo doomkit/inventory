@@ -1,0 +1,12 @@
+{
+  "stock-items": [
+    {
+      "id": 0,
+      "name": "One"
+    },
+    {
+      "id": 1,
+      "name": "Two"
+    }
+  ]
+}
