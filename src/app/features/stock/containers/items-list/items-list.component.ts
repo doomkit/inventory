@@ -22,5 +22,6 @@ export class ItemsListComponent implements OnInit {
 
   ngOnInit(): void {
     this.stockItems$ = this.store.select(fromStore.getAllStockItems);
+    this.store.dispatch(new fromStore.LoadItems());
   }
 }
