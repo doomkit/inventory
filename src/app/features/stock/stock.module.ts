@@ -3,7 +3,8 @@ import { CommonModule } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
 
 import { StoreModule } from '@ngrx/store';
-import { reducers } from '@core/store';
+import { EffectsModule } from '@ngrx/effects';
+import { reducers, effects } from '@core/store';
 
 import { StockComponent } from './stock.component';
 import { StockItemComponent } from './components';
@@ -20,7 +21,8 @@ const routes: Routes = [
   imports: [
     CommonModule,
     RouterModule.forChild(routes),
-    StoreModule.forFeature('stock', reducers)
+    StoreModule.forFeature('stock', reducers),
+    EffectsModule.forFeature(effects)
   ],
   declarations: [StockComponent, ItemsListComponent, StockItemComponent]
 })
