@@ -7,7 +7,7 @@ import { EffectsModule } from '@ngrx/effects';
 import { reducers, effects } from '@core/store';
 
 import { StockComponent } from './stock.component';
-import { StockItemComponent } from './components';
+import { StockItemComponent, ItemsFilterComponent } from './components';
 import { ItemsListComponent } from './containers';
 
 const routes: Routes = [
@@ -24,6 +24,11 @@ const routes: Routes = [
     StoreModule.forFeature('stock', reducers),
     EffectsModule.forFeature(effects)
   ],
-  declarations: [StockComponent, ItemsListComponent, StockItemComponent]
+  declarations: [
+    StockComponent,
+    ItemsListComponent,
+    StockItemComponent,
+    ItemsFilterComponent
+  ]
 })
 export class StockModule {}

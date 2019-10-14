@@ -7,11 +7,19 @@ import * as fromStore from '@core/store';
 @Component({
   selector: 'app-items-list',
   template: `
-    <div class="stock-list">
-      <app-stock-item
-        *ngFor="let item of stockItems$ | async"
-        [item]="item"
-      ></app-stock-item>
+    <div class="container">
+      <div class="columns">
+        <div class="column is-3">
+          <app-items-filter></app-items-filter>
+        </div>
+
+        <div class="column is-9">
+          <app-stock-item
+            *ngFor="let item of stockItems$ | async"
+            [item]="item"
+          ></app-stock-item>
+        </div>
+      </div>
     </div>
   `,
   styleUrls: ['./items-list.component.scss']
