@@ -26,6 +26,7 @@
             "aot": true,
             "assets": ["src/favicon.ico", "src/assets"],
             "styles": [
+              "node_modules/@fortawesome/fontawesome-free/css/all.min.css",
               "node_modules/bulma/css/bulma.min.css",
               "src/styles/main.scss"
             ],
