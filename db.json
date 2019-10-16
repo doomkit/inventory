@@ -2,11 +2,23 @@
   "stock-items": [
     {
       "id": 0,
-      "name": "One"
+      "name": "A"
     },
     {
       "id": 1,
-      "name": "Two"
+      "name": "B"
+    },
+    {
+      "id": 2,
+      "name": "C"
+    },
+    {
+      "id": 3,
+      "name": "D"
+    },
+    {
+      "id": 4,
+      "name": "E"
     }
   ]
 }
