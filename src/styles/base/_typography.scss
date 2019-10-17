@@ -43,3 +43,20 @@ h3 {
     color: $nord3;
   }
 }
+
+@keyframes showDelayedText {
+  from {
+    color: transparent;
+  }
+  to {
+    color: #4a4a4a;
+  }
+}
+
+.delayed-text {
+  color: transparent;
+  animation-name: showDelayedText;
+  animation-fill-mode: forwards;
+  animation-duration: 0.3s;
+  animation-delay: 1s;
+}
