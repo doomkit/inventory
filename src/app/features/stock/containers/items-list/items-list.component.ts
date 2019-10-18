@@ -20,9 +20,11 @@ import { FilterOptions } from '../../components/items-filter/filter-options';
           </div>
           <div class="column is-9">
             <div class="columns is-multiline is-mobile">
-              <div
-                class="column is-half-mobile is-one-third-tablet"
-                *ngFor="let item of stockItems$ | async"
+              <!-- prettier-ignore -->
+              <div class="column is-half-mobile is-one-third-tablet"
+                *ngFor="let item of stockItems$
+                  | async
+                  | slice: ((selectedPage - 1)* elementsOnPage) : (selectedPage * elementsOnPage)"
               >
                 <app-stock-item [item]="item"></app-stock-item>
               </div>
@@ -35,7 +37,12 @@ import { FilterOptions } from '../../components/items-filter/filter-options';
             </div>
           </div>
         </div>
-        <app-pagination></app-pagination>
+        <app-pagination
+          [elementsOnPage]="elementsOnPage"
+          [selectedPage]="selectedPage"
+          [elementsCount]="(stockItems$ | async)?.length"
+          (selectPage)="onPageChange($event)"
+        ></app-pagination>
       </div>
     </div>
   `,
@@ -48,6 +55,9 @@ export class ItemsListComponent implements OnInit {
     categories: [],
     search: null
   };
+
+  elementsOnPage = 9;
+  selectedPage = 1;
 
   constructor(private store: Store<fromStore.StockState>) {}
 
@@ -63,5 +73,11 @@ export class ItemsListComponent implements OnInit {
     this.filterOptions = newOptions;
     // TODO: apply filter to loaded items
     console.log(this.filterOptions);
+  }
+
+  onPageChange(page): void {
+    this.selectedPage = page;
+    // TODO: show correct items according to page number
+    // TODO: update url's page parameter
   }
 }

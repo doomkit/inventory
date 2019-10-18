@@ -6,7 +6,7 @@ import { FilterOptions } from './filter-options';
   template: `
     <nav class="panel">
       <p class="panel-heading">
-        filters
+        Filter Items
       </p>
       <div class="panel-block">
         <p class="control has-icons-left">
@@ -50,10 +50,8 @@ export class ItemsFilterComponent implements OnInit {
   @Input() allCategories: string[];
   @Input() filterOptions: FilterOptions;
   @Output() filterOptionsChange = new EventEmitter<FilterOptions>();
-  displayedCategories: any[];
+  displayedCategories: { name: string; selected: boolean }[];
   searchQuery: string;
-
-  constructor() {}
 
   ngOnInit() {
     this.displayedCategories = this.allCategories.map(el => {
