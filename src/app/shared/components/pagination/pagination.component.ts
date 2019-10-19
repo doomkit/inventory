@@ -72,10 +72,17 @@ export class PaginationComponent implements OnChanges {
   showNext;
 
   ngOnChanges(): void {
+    if (this.selectedPage < 1) {
+      this.onPageSelect(1);
+      return;
+    }
     this.totalPages = Math.ceil(this.elementsCount / this.elementsOnPage);
     this.pages = [];
     for (let i = 1; i <= this.totalPages; i++) {
       this.pages = [...this.pages, i];
+    }
+    if (this.totalPages !== 0 && this.selectedPage > this.totalPages) {
+      this.onPageSelect(this.totalPages);
     }
     this.showPrevious = this.selectedPage === 1 ? true : null;
     this.showNext = this.selectedPage === this.totalPages ? true : null;

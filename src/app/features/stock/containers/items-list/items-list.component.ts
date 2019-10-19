@@ -1,8 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
+
 import { StockItem } from '@app/core/models';
 import * as fromStore from '@core/store';
+
 import { FilterOptions } from '../../components/items-filter/filter-options';
 
 @Component({
@@ -55,11 +58,15 @@ export class ItemsListComponent implements OnInit {
     categories: [],
     search: null
   };
-
   elementsOnPage = 9;
   selectedPage = 1;
 
-  constructor(private store: Store<fromStore.StockState>) {}
+  constructor(
+    private store: Store<fromStore.StockState>,
+    private route: ActivatedRoute,
+    private router: Router,
+    private cdRef: ChangeDetectorRef
+  ) {}
 
   ngOnInit(): void {
     this.stockItems$ = this.store.select(fromStore.getAllStockItems);
@@ -67,6 +74,13 @@ export class ItemsListComponent implements OnInit {
 
     // TODO: load stock's categories
     this.allCategories = ['Furniture', 'Garden', 'Car', 'Tools', 'Home'];
+
+    const pageNumber = Number(this.route.snapshot.queryParams.page);
+    if (!pageNumber || typeof pageNumber !== 'number') {
+      this.router.navigate(['/not-found']);
+      return;
+    }
+    this.selectedPage = pageNumber;
   }
 
   onFilterOptionsUpdate(newOptions: FilterOptions): void {
@@ -77,7 +91,13 @@ export class ItemsListComponent implements OnInit {
 
   onPageChange(page): void {
     this.selectedPage = page;
-    // TODO: show correct items according to page number
-    // TODO: update url's page parameter
+    this.router.navigate(['/dashboard/stock'], { queryParams: { page } });
+    /*
+     *  Bad page number is handled in Paginator Component
+     *  because this component counts pages according to
+     *  loaded items. If url's parameter is bad, it changes
+     *  the view of displayed items after it was checked.
+     */
+    this.cdRef.detectChanges();
   }
 }

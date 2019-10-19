@@ -14,7 +14,7 @@ import { AuthGuard } from '@core/auth/auth.guard';
   template: `
     <div class="dashboard">
       <app-breadcrumb [breadcrumbs]="breadcrumbs"></app-breadcrumb>
-      <a routerLink="stock">Stock</a>
+      <a [routerLink]="'stock'" [queryParams]="{ page: '1' }">Stock</a>
       <button (click)="logOut()">Log out</button>
       <router-outlet></router-outlet>
     </div>
