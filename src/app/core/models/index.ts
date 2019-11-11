@@ -1,4 +1,5 @@
-// export * from './classes/'
-// export * from './enums/'
+export * from './enums/user-role.enum';
 
 export * from './interfaces/stock-item';
+export * from './interfaces/user';
+export * from './interfaces/order';

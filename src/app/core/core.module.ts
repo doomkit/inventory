@@ -1,9 +1,15 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
-import { UserService, StockItemsService } from './services';
 import { AuthGuard } from './auth/auth.guard';
+import { JwtInterceptor, ErrorInterceptor } from './interceptors';
+
+import {
+  UserService,
+  StockItemsService,
+  AuthenticationService
+} from './services';
 
 import { FooterComponent } from './components';
 
@@ -11,6 +17,13 @@ import { FooterComponent } from './components';
   imports: [CommonModule, HttpClientModule],
   declarations: [FooterComponent],
   exports: [FooterComponent, HttpClientModule],
-  providers: [AuthGuard, UserService, StockItemsService]
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+    AuthGuard,
+    UserService,
+    AuthenticationService,
+    StockItemsService
+  ]
 })
 export class CoreModule {}
