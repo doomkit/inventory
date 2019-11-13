@@ -21,11 +21,6 @@ export class ManagerGuard implements CanActivate {
     if (currentUser && currentUser.role === UserRole.MANAGER) {
       return true;
     }
-    this.router.navigate(['/dasboard'], {
-      queryParams: {
-        from: state.url
-      }
-    });
     return false;
   }
 }

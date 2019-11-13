@@ -21,11 +21,6 @@ export class CourierGuard implements CanActivate {
     if (currentUser && currentUser.role === UserRole.COURIER) {
       return true;
     }
-    this.router.navigate(['/dasboard'], {
-      queryParams: {
-        from: state.url
-      }
-    });
     return false;
   }
 }
