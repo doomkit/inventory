@@ -11,10 +11,7 @@ import { UserRole } from '@core/models';
 
 @Injectable()
 export class CourierGuard implements CanActivate {
-  constructor(
-    private authenticationService: AuthenticationService,
-    private router: Router
-  ) {}
+  constructor(private authenticationService: AuthenticationService) {}
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
     const currentUser = this.authenticationService.currentUser;
