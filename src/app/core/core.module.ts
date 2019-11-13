@@ -13,17 +13,22 @@ import {
 
 import { FooterComponent } from './components';
 
+// FIXME: remove this when real backend will be prepared
+import { fakeBackendProvider } from './helpers/fake-backend';
+
 @NgModule({
   imports: [CommonModule, HttpClientModule],
   declarations: [FooterComponent],
   exports: [FooterComponent, HttpClientModule],
   providers: [
-    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
-    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
     AuthGuard,
     UserService,
     AuthenticationService,
-    StockItemsService
+    StockItemsService,
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+    // FIXME: remove this when real backend will be prepared
+    fakeBackendProvider
   ]
 })
 export class CoreModule {}
