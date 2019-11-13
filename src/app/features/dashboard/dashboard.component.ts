@@ -8,6 +8,7 @@ import {
   NavigationEnd
 } from '@angular/router';
 import { AuthGuard } from '@core/auth/auth.guard';
+import { AuthenticationService } from '@app/core/services';
 
 @Component({
   selector: 'app-dashboard',
@@ -25,7 +26,8 @@ export class DashboardComponent {
   breadcrumbs: UrlSegment[];
 
   constructor(
-    private authService: AuthGuard,
+    private authService: AuthenticationService,
+    private authGuard: AuthGuard,
     private route: ActivatedRoute,
     private router: Router
   ) {
@@ -39,8 +41,8 @@ export class DashboardComponent {
   }
 
   logOut() {
-    sessionStorage.removeItem('username');
-    this.authService.canActivate(
+    this.authService.logout();
+    this.authGuard.canActivate(
       this.route.snapshot,
       this.router.routerState.snapshot
     );

@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { FormControl, Validators } from '@angular/forms';
-import { UserService } from '@app/core/services';
-import { AuthGuard } from '@app/core/auth/auth.guard';
+import { Validators, FormGroup, FormBuilder } from '@angular/forms';
+import { AuthenticationService } from '@app/core/services';
+import { first } from 'rxjs/operators';
 
 @Component({
   selector: 'app-login',
@@ -21,20 +21,31 @@ import { AuthGuard } from '@app/core/auth/auth.guard';
               </a>
             </div>
           </div>
+
           <div class="column">
-            <form class="login--form">
-              <h1>{{ title }}</h1>
-              <p>Enter your <span class="hint">username</span> to continue</p>
+            <form
+              class="login--form"
+              [formGroup]="loginForm"
+              (ngSubmit)="onSubmit()"
+            >
+              <h1 class="login--title">{{ title }}</h1>
+              <p class="login--subtitle">Sign in to your inventory account</p>
               <input
                 type="text"
                 class="input"
-                (keydown)="onEnterPress($event)"
-                [formControl]="username"
+                formControlName="username"
+                placeholder="username"
+              />
+              <input
+                type="password"
+                class="input"
+                formControlName="password"
+                placeholder="password"
               />
               <app-button
+                [type]="'submit'"
                 [text]="'Continue'"
-                [disabled]="!username.valid"
-                (trigger)="contnue()"
+                [disabled]="!loginForm.valid"
               ></app-button>
             </form>
           </div>
@@ -45,40 +56,51 @@ import { AuthGuard } from '@app/core/auth/auth.guard';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent {
-  username: FormControl;
+  loginForm: FormGroup;
   title = 'Welcome to Inventory!';
+  error = ''; // TODO: display error message
 
   constructor(
+    private formBuilder: FormBuilder,
     private route: ActivatedRoute,
     private router: Router,
-    private userService: UserService,
-    private authService: AuthGuard
+    private authService: AuthenticationService
   ) {
-    this.username = new FormControl('', [
-      Validators.required,
-      Validators.minLength(3)
-    ]);
-    if (authService.canActivate) {
-      this.username.setValue(userService.username);
-      this.contnue();
+    if (this.authService.currentUser) {
+      this.router.navigate(['/dashboard']);
     }
+
+    this.loginForm = this.formBuilder.group({
+      username: ['', [Validators.required, Validators.minLength(3)]],
+      password: ['', Validators.required]
+    });
+
+    // CONSIDER: return back to previous page before authorisation
     const fromUrl = this.route.snapshot.queryParams.from;
     if (fromUrl) {
       this.title = 'Welcome back!';
     }
   }
 
-  onEnterPress(event) {
-    if (event.key === 'Enter') {
-      event.preventDefault();
-      this.contnue();
-    }
+  // convenience getter for easy access to form fields
+  get f() {
+    return this.loginForm.controls;
   }
 
-  contnue() {
-    if (this.username.valid) {
-      this.userService.username = this.username.value;
-      this.router.navigate(['/dashboard']);
+  onSubmit() {
+    if (this.loginForm.invalid) {
+      return;
     }
+    this.authService
+      .login(this.f.username.value, this.f.password.value)
+      .pipe(first())
+      .subscribe(
+        data => {
+          this.router.navigate(['/dashboard']);
+        },
+        error => {
+          this.error = error;
+        }
+      );
   }
 }
