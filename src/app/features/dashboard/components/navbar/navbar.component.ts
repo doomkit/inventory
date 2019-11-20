@@ -9,12 +9,8 @@ import { Component, OnInit } from '@angular/core';
       aria-label="main navigation"
     >
       <div class="navbar-brand">
-        <a class="navbar-item" href="https://bulma.io">
-          <img
-            src="https://bulma.io/images/bulma-logo.png"
-            width="112"
-            height="28"
-          />
+        <a class="navbar-item" href="#">
+          <img [attr.src]="'/assets/img/logo.png'" width="112" height="28" />
         </a>
 
         <a
@@ -67,7 +63,7 @@ import { Component, OnInit } from '@angular/core';
                 Details
               </a>
               <hr class="navbar-divider" />
-              <a class="navbar-item">
+              <a class="navbar-item logout">
                 Logout
               </a>
             </div>
@@ -76,7 +72,7 @@ import { Component, OnInit } from '@angular/core';
       </div>
     </nav>
   `,
-  styleUrls: ['./navbar.component.css']
+  styleUrls: ['./navbar.component.scss']
 })
 export class NavbarComponent implements OnInit {
   constructor() {}

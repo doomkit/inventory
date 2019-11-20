@@ -12,15 +12,15 @@ import {
   AuthenticationService
 } from './services';
 
-import { FooterComponent, NavbarComponent } from './components';
+import { FooterComponent } from './components';
 
 // FIXME: remove this when real backend will be prepared
 import { fakeBackendProvider } from './helpers/fake-backend';
 
 @NgModule({
   imports: [CommonModule, HttpClientModule],
-  declarations: [FooterComponent, NavbarComponent],
-  exports: [FooterComponent, NavbarComponent, HttpClientModule],
+  declarations: [FooterComponent],
+  exports: [FooterComponent, HttpClientModule],
   providers: [
     AuthGuard,
     ManagerGuard,

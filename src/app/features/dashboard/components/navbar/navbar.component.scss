@@ -1,0 +1,8 @@
+@import 'src/styles/abstracts/variables';
+
+.logout {
+  color: $nord11 !important;
+  &:hover {
+    color: $nord11 !important;
+  }
+}

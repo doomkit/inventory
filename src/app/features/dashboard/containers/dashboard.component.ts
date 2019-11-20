@@ -13,14 +13,14 @@ import { AuthenticationService } from '@app/core/services';
 @Component({
   selector: 'app-dashboard',
   template: `
-    <div class="dashboard">
+    <div style="min-height: 100%;">
+      <app-navbar></app-navbar>
       <app-breadcrumb [breadcrumbs]="breadcrumbs"></app-breadcrumb>
       <a [routerLink]="'stock'" [queryParams]="{ page: '1' }">Stock</a>
       <button (click)="logOut()">Log out</button>
       <router-outlet></router-outlet>
     </div>
-  `,
-  styleUrls: ['./dashboard.component.scss']
+  `
 })
 export class DashboardComponent {
   breadcrumbs: UrlSegment[];
