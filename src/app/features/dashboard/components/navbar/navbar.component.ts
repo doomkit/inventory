@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Output, EventEmitter, Input } from '@angular/core';
 
 @Component({
   selector: 'app-navbar',
@@ -9,26 +9,14 @@ import { Component, OnInit } from '@angular/core';
       aria-label="main navigation"
     >
       <div class="navbar-brand">
-        <a class="navbar-item" href="#">
+        <a class="navbar-item" routerLink="/dashboard">
           <img [attr.src]="'/assets/img/logo.png'" width="112" height="28" />
-        </a>
-
-        <a
-          role="button"
-          class="navbar-burger burger"
-          aria-label="menu"
-          aria-expanded="false"
-          data-target="navbarBasicExample"
-        >
-          <span aria-hidden="true"></span>
-          <span aria-hidden="true"></span>
-          <span aria-hidden="true"></span>
         </a>
       </div>
 
       <div id="navbarBasicExample" class="navbar-menu">
         <div class="navbar-start">
-          <a class="navbar-item">
+          <a class="navbar-item" routerLink="/dashboard">
             Home
           </a>
 
@@ -38,14 +26,24 @@ import { Component, OnInit } from '@angular/core';
             </a>
 
             <div class="navbar-dropdown is-boxed">
-              <a class="navbar-item">
+              <a class="navbar-item" routerLink="about">
                 About
               </a>
-              <a class="navbar-item">
+              <a
+                class="navbar-item"
+                href="https://github.com/doomkit/inventory"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 Source code
               </a>
               <hr class="navbar-divider" />
-              <a class="navbar-item">
+              <a
+                class="navbar-item"
+                href="https://github.com/doomkit/inventory/issues/new"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 Report an issue
               </a>
             </div>
@@ -55,7 +53,7 @@ import { Component, OnInit } from '@angular/core';
         <div class="navbar-end">
           <div class="navbar-item has-dropdown is-hoverable">
             <a class="navbar-link">
-              Profile
+              <span *ngIf="username">{{ username }}'s</span>&nbsp;Profile
             </a>
 
             <div class="navbar-dropdown is-right is-boxed">
@@ -63,7 +61,7 @@ import { Component, OnInit } from '@angular/core';
                 Details
               </a>
               <hr class="navbar-divider" />
-              <a class="navbar-item logout">
+              <a class="navbar-item logout" (click)="onLogoutClick()">
                 Logout
               </a>
             </div>
@@ -74,8 +72,11 @@ import { Component, OnInit } from '@angular/core';
   `,
   styleUrls: ['./navbar.component.scss']
 })
-export class NavbarComponent implements OnInit {
-  constructor() {}
+export class NavbarComponent {
+  @Input() username: string;
+  @Output() logout = new EventEmitter<boolean>();
 
-  ngOnInit() {}
+  onLogoutClick(): void {
+    this.logout.emit();
+  }
 }
