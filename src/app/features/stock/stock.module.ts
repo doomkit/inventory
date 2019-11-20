@@ -7,6 +7,8 @@ import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { reducers, effects } from '@core/store';
 
+import { ManagerGuard } from '@core/guards';
+
 import { StockComponent } from './stock.component';
 import { StockItemComponent, ItemsFilterComponent } from './components';
 import { ItemsListComponent } from './containers';
@@ -14,7 +16,8 @@ import { ItemsListComponent } from './containers';
 const routes: Routes = [
   {
     path: '',
-    component: StockComponent
+    component: StockComponent,
+    canActivate: [ManagerGuard]
   }
 ];
 

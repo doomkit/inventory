@@ -2,7 +2,8 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
-import { AuthGuard } from './auth/auth.guard';
+import { AuthGuard, ManagerGuard, CourierGuard } from './guards';
+
 import { JwtInterceptor, ErrorInterceptor } from './interceptors';
 
 import {
@@ -22,6 +23,8 @@ import { fakeBackendProvider } from './helpers/fake-backend';
   exports: [FooterComponent, HttpClientModule],
   providers: [
     AuthGuard,
+    ManagerGuard,
+    CourierGuard,
     UserService,
     AuthenticationService,
     StockItemsService,
