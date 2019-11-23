@@ -1,11 +1,11 @@
-import { UserRole } from '../enums/user-role.enum';
+import { UserRole } from "../enums/user-role.enum";
 
 export interface User {
-  id: number; // UNIQUE
-  username: string; // UNIQUE
-  corporate_id: number; // UNIQUE
-  email: string; // UNIQUE
-  password?: string; // Registration only
+  id: number;
+  username: string;
+  corporate_id: number;
+  email: string;
+  password?: string;
   name: string;
   surname: string;
   photo: string;
