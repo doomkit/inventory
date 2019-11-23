@@ -1,4 +1,4 @@
-import { Address } from "cluster";
+import { Address } from "@core/models";
 
 export interface Stock {
   id: number;
