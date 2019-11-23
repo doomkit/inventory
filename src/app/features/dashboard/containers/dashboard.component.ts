@@ -9,21 +9,26 @@ import {
 } from '@angular/router';
 import { AuthGuard } from '@core/guards';
 import { AuthenticationService } from '@app/core/services';
+import { Observable } from 'rxjs';
+import { User } from '@app/core/models';
 
 @Component({
   selector: 'app-dashboard',
   template: `
-    <div class="dashboard">
+    <div style="min-height: 100%;">
+      <app-navbar
+        [username]="(user$ | async).name"
+        (logout)="onLogout()"
+      ></app-navbar>
       <app-breadcrumb [breadcrumbs]="breadcrumbs"></app-breadcrumb>
       <a [routerLink]="'stock'" [queryParams]="{ page: '1' }">Stock</a>
-      <button (click)="logOut()">Log out</button>
       <router-outlet></router-outlet>
     </div>
-  `,
-  styleUrls: ['./dashboard.component.scss']
+  `
 })
 export class DashboardComponent {
   breadcrumbs: UrlSegment[];
+  user$: Observable<User>;
 
   constructor(
     private authService: AuthenticationService,
@@ -31,6 +36,7 @@ export class DashboardComponent {
     private route: ActivatedRoute,
     private router: Router
   ) {
+    this.user$ = authService.currentUser$;
     router.events.subscribe(event => {
       if (event instanceof NavigationEnd) {
         const tree = router.parseUrl(this.router.url);
@@ -40,7 +46,7 @@ export class DashboardComponent {
     });
   }
 
-  logOut() {
+  onLogout() {
     this.authService.logout();
     this.authGuard.canActivate(
       this.route.snapshot,

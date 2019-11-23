@@ -4,8 +4,8 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { SharedModule } from '@shared/shared.module';
 
-import { DashboardComponent } from './dashboard.component';
-import { StockListComponent } from './containers';
+import { DashboardComponent, StockListComponent } from './containers';
+import { NavbarComponent } from './components';
 
 const routes: Routes = [
   {
@@ -25,6 +25,6 @@ const routes: Routes = [
 
 @NgModule({
   imports: [CommonModule, RouterModule.forChild(routes), SharedModule],
-  declarations: [DashboardComponent, StockListComponent]
+  declarations: [DashboardComponent, NavbarComponent, StockListComponent]
 })
 export class DashboardModule {}
