@@ -1,7 +1,7 @@
-import { Component, Output, EventEmitter, Input } from '@angular/core';
+import { Component, Output, EventEmitter, Input } from "@angular/core";
 
 @Component({
-  selector: 'app-navbar',
+  selector: "app-navbar",
   template: `
     <nav
       class="navbar is-transparent"
@@ -14,7 +14,7 @@ import { Component, Output, EventEmitter, Input } from '@angular/core';
         </a>
       </div>
 
-      <div id="navbarBasicExample" class="navbar-menu">
+      <div class="navbar-menu">
         <div class="navbar-start">
           <a class="navbar-item" routerLink="/dashboard">
             Home
@@ -70,7 +70,7 @@ import { Component, Output, EventEmitter, Input } from '@angular/core';
       </div>
     </nav>
   `,
-  styleUrls: ['./navbar.component.scss']
+  styleUrls: ["./navbar.component.scss"]
 })
 export class NavbarComponent {
   @Input() username: string;
