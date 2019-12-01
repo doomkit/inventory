@@ -1,5 +1,4 @@
 import { Action } from '@ngrx/store';
-
 import { Stock, StockItem } from '@core/models';
 
 // Load stocks
