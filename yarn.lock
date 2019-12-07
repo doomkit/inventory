@@ -855,20 +855,20 @@
   resolved "https://registry.yarnpkg.com/@fortawesome/fontawesome-free/-/fontawesome-free-5.11.2.tgz#8644bc25b19475779a7b7c1fc104bc0a794f4465"
   integrity sha512-XiUPoS79r1G7PcpnNtq85TJ7inJWe0v+b5oZJZKb0pGHNIV6+UiNeQWiFGmuQ0aj7GEhnD/v9iqxIsjuRKtEnQ==
 
-"@ngrx/effects@^8.3.0":
-  version "8.3.0"
-  resolved "https://registry.yarnpkg.com/@ngrx/effects/-/effects-8.3.0.tgz#d99a777ab352d4efdf456a7dec307514187ba496"
-  integrity sha512-/DdBqCFpHOJZUAmIpefQ8EVwmJXXkcEdLhsV8aXncCNWkK61sy/MbZZfDAbee6Cd1is33bVXRUKD49Z+Upvw5A==
+"@ngrx/effects@^8.5.2":
+  version "8.5.2"
+  resolved "https://registry.yarnpkg.com/@ngrx/effects/-/effects-8.5.2.tgz#c4f81947f4028a0d678ed2641101481cdbe11b59"
+  integrity sha512-i2rKLmFcfJmPPQRul1PuXXRuBX2q1g7tK6DbWreNabU/46fYlEwqiiW6lU53t3AgJ3yd6UpeLTR6CHTflkzL+w==
 
 "@ngrx/store-devtools@^8.5.2":
   version "8.5.2"
   resolved "https://registry.yarnpkg.com/@ngrx/store-devtools/-/store-devtools-8.5.2.tgz#722b2b9d290f6b64a9bce421d1a0f283970319a3"
   integrity sha512-3GrAAX3/J39u0AcREgWBiUwuNkZhgei+2K6/bulkAu/BHw+PJaZqq5+c+uQFvi0/aq+/8+9wjNhhCWS4Entk/Q==
 
-"@ngrx/store@^8.3.0":
-  version "8.3.0"
-  resolved "https://registry.yarnpkg.com/@ngrx/store/-/store-8.3.0.tgz#f2eaf428ec9e8379801cc37e3f6bffe88c2af472"
-  integrity sha512-QtM5T6/wTYqAlqeW60ptqqrsBwYF7jvQHsh0yE3AnwZIQvSbLFM2t5S2kN+753v4rHiXVRrA5pLaLzjGhAKcSg==
+"@ngrx/store@^8.5.2":
+  version "8.5.2"
+  resolved "https://registry.yarnpkg.com/@ngrx/store/-/store-8.5.2.tgz#18e4a39f3e7ac2ec8307653837ec3c4153bde04f"
+  integrity sha512-JPlc23Aw3rlEKt6LCkg3a0zlo0tEgkohH3CDHVbUIYSgg3DWOnmNfwztbz4pa2u2wua5PfFCovC7HKTNmapx/w==
 
 "@ngtools/webpack@8.3.20":
   version "8.3.20"
