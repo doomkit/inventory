@@ -19,24 +19,30 @@ export class StockItemsService {
       .pipe(catchError(error => Observable.throw(error.json())));
   }
 
-  createStockItem(payload: StockItem): Observable<StockItem[]> {
+  createStockItem(payload: StockItem): Observable<StockItem> {
     return this.http
-      .post<StockItem[]>(`${environment.BASE_URL}/stock-items`, payload)
+      .post<StockItem>(`${environment.BASE_URL}/stock-items`, payload)
       .pipe(catchError(error => Observable.throw(error.json())));
   }
 
-  updateStockItem(payload: StockItem): Observable<StockItem[]> {
+  updateStockItem(payload: StockItem): Observable<StockItem> {
     return this.http
-      .put<StockItem[]>(
+      .put<StockItem>(
         `${environment.BASE_URL}/stock-items/${payload.id}`,
         payload
       )
       .pipe(catchError(error => Observable.throw(error.json())));
   }
 
-  deleteStockItem(payload: StockItem): Observable<StockItem[]> {
+  deleteStockItem(payload: StockItem): Observable<StockItem> {
     return this.http
-      .delete<StockItem[]>(`${environment.BASE_URL}/stock-items/${payload.id}`)
+      .delete<StockItem>(`${environment.BASE_URL}/stock-items/${payload.id}`)
+      .pipe(catchError(error => Observable.throw(error.json())));
+  }
+
+  addStockItemTOStock(payload: StockItem): Observable<StockItem> {
+    return this.http
+      .delete<StockItem>(`${environment.BASE_URL}/stock-items/${payload.id}`)
       .pipe(catchError(error => Observable.throw(error.json())));
   }
 }

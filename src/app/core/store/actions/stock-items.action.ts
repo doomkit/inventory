@@ -27,6 +27,7 @@ export const CREATE_ITEM_SUCCESS = '[StockItems] Create Item Success';
 
 export class CreateItem implements Action {
   readonly type = CREATE_ITEM;
+  constructor(public payload: StockItem) {}
 }
 
 export class CreateItemFail implements Action {
