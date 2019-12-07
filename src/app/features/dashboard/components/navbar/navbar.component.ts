@@ -1,7 +1,7 @@
-import { Component, Output, EventEmitter, Input } from "@angular/core";
+import { Component, Output, EventEmitter, Input } from '@angular/core';
 
 @Component({
-  selector: "app-navbar",
+  selector: 'app-navbar',
   template: `
     <nav
       class="navbar is-transparent"
@@ -12,12 +12,46 @@ import { Component, Output, EventEmitter, Input } from "@angular/core";
         <a class="navbar-item" routerLink="/dashboard">
           <img [attr.src]="'/assets/img/logo.png'" width="112" height="28" />
         </a>
+
+        <a
+          role="button"
+          class="navbar-burger burger"
+          aria-label="menu"
+          aria-expanded="false"
+          data-target="navbarBasicExample"
+          (click)="toggleMenu()"
+        >
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+        </a>
       </div>
 
-      <div class="navbar-menu">
+      <div class="navbar-menu" [ngClass]="{ 'is-active': showMenu }">
         <div class="navbar-start">
-          <a class="navbar-item" routerLink="/dashboard">
+          <a
+            class="navbar-item"
+            routerLink="/dashboard"
+            routerLinkActive="is-active"
+          >
             Home
+          </a>
+
+          <a
+            class="navbar-item"
+            [routerLink]="'stock'"
+            routerLinkActive="is-active"
+            [queryParams]="{ page: '1' }"
+          >
+            Stocks
+          </a>
+
+          <a
+            class="navbar-item"
+            routerLink="/dashboard"
+            routerLinkActive="is-active"
+          >
+            Orders
           </a>
 
           <div class="navbar-item has-dropdown is-hoverable">
@@ -70,13 +104,19 @@ import { Component, Output, EventEmitter, Input } from "@angular/core";
       </div>
     </nav>
   `,
-  styleUrls: ["./navbar.component.scss"]
+  styleUrls: ['./navbar.component.scss']
 })
 export class NavbarComponent {
   @Input() username: string;
   @Output() logout = new EventEmitter<boolean>();
 
+  showMenu = false;
+
   onLogoutClick(): void {
     this.logout.emit();
+  }
+
+  toggleMenu() {
+    this.showMenu = !this.showMenu;
   }
 }
