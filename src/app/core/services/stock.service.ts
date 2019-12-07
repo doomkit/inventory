@@ -1,14 +1,14 @@
-import { Injectable } from "@angular/core";
-import { HttpClient } from "@angular/common/http";
-import { Observable } from "rxjs";
-import { catchError } from "rxjs/operators";
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { catchError } from 'rxjs/operators';
 
-import { Stock } from "@core/models";
+import { Stock } from '@core/models';
 
-import { environment } from "@env/environment";
+import { environment } from '@env/environment';
 
 @Injectable({
-  providedIn: "root"
+  providedIn: 'root'
 })
 export class StockService {
   constructor(private http: HttpClient) {}
@@ -19,9 +19,14 @@ export class StockService {
       .pipe(catchError(error => Observable.throw(error.json())));
   }
 
+  /*
+	*	Can be used later
+	*
+
   getStockById(id: number): Observable<Stock[]> {
     return this.http
       .get<Stock[]>(`${environment.BASE_URL}/stocks/${id}`)
       .pipe(catchError(error => Observable.throw(error.json())));
-  }
+	}
+	*/
 }
