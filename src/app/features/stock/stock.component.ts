@@ -3,7 +3,7 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'app-stock',
   template: `
-    <app-items-list></app-items-list>
+    <router-outlet></router-outlet>
   `,
   styleUrls: ['./stock.component.scss']
 })

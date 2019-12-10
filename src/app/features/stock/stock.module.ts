@@ -10,14 +10,30 @@ import { reducers, effects } from '@core/store';
 import { ManagerGuard } from '@core/guards';
 
 import { StockComponent } from './stock.component';
-import { StockItemComponent, ItemsFilterComponent } from './components';
-import { ItemsListComponent } from './containers';
+import {
+  StockItemComponent,
+  ItemsFilterComponent,
+  StockListItemComponent
+} from './components';
+import { ItemsListComponent, StockListComponent } from './containers';
 
 const routes: Routes = [
   {
     path: '',
     component: StockComponent,
-    canActivate: [ManagerGuard]
+    canActivate: [ManagerGuard],
+    children: [
+      {
+        path: '',
+        component: StockListComponent,
+        canActivate: [ManagerGuard]
+      },
+      {
+        path: ':id',
+        component: ItemsListComponent,
+        canActivate: [ManagerGuard]
+      }
+    ]
   }
 ];
 
@@ -33,7 +49,9 @@ const routes: Routes = [
     StockComponent,
     ItemsListComponent,
     StockItemComponent,
-    ItemsFilterComponent
+    ItemsFilterComponent,
+    StockListComponent,
+    StockListItemComponent
   ]
 })
 export class StockModule {}

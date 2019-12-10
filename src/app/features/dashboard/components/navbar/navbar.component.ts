@@ -27,12 +27,18 @@ import { Component, Output, EventEmitter, Input } from '@angular/core';
         </a>
       </div>
 
-      <div class="navbar-menu" [ngClass]="{ 'is-active': showMenu }">
+      <div
+        class="navbar-menu"
+        [ngClass]="{
+          'is-active': showMenu
+        }"
+      >
         <div class="navbar-start">
           <a
             class="navbar-item"
-            routerLink="/dashboard"
+            [routerLink]="['/dashboard']"
             routerLinkActive="is-active"
+            [routerLinkActiveOptions]="{ exact: true }"
           >
             Home
           </a>
@@ -41,7 +47,7 @@ import { Component, Output, EventEmitter, Input } from '@angular/core';
             class="navbar-item"
             [routerLink]="'stock'"
             routerLinkActive="is-active"
-            [queryParams]="{ page: '1' }"
+            [routerLinkActiveOptions]="{ exact: false }"
           >
             Stocks
           </a>
@@ -50,6 +56,7 @@ import { Component, Output, EventEmitter, Input } from '@angular/core';
             class="navbar-item"
             routerLink="/dashboard"
             routerLinkActive="is-active"
+            [routerLinkActiveOptions]="{ exact: true }"
           >
             Orders
           </a>
