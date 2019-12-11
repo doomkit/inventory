@@ -1,0 +1,20 @@
+.modal-card {
+  height: 100%;
+}
+
+.modal-card-body.search {
+  flex-grow: 0;
+}
+
+.modal-card-foot {
+  justify-content: flex-end;
+}
+
+.table {
+  width: 100%;
+}
+
+.action-link {
+  display: inline-block;
+  min-width: 90px;
+}

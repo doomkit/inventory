@@ -5,7 +5,15 @@ import { Routes, RouterModule } from '@angular/router';
 import { SharedModule } from '@shared/shared.module';
 
 import { DashboardComponent, ControlPanelComponent } from './containers';
-import { NavbarComponent, CreateItemModalComponent } from './components';
+import {
+  NavbarComponent,
+  CreateItemModalComponent,
+  DeleteItemModalComponent
+} from './components';
+
+import { StoreModule } from '@ngrx/store';
+import { reducers, effects } from '@app/core/store';
+import { EffectsModule } from '@ngrx/effects';
 
 const routes: Routes = [
   {
@@ -28,12 +36,19 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [CommonModule, RouterModule.forChild(routes), SharedModule],
+  imports: [
+    CommonModule,
+    RouterModule.forChild(routes),
+    StoreModule.forFeature('inventory', reducers),
+    EffectsModule.forFeature(effects),
+    SharedModule
+  ],
   declarations: [
     DashboardComponent,
     ControlPanelComponent,
     NavbarComponent,
-    CreateItemModalComponent
+    CreateItemModalComponent,
+    DeleteItemModalComponent
   ]
 })
 export class DashboardModule {}

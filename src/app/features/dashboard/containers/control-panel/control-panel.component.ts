@@ -1,5 +1,8 @@
 import { Component, ViewChild } from '@angular/core';
-import { CreateItemModalComponent } from '../../components';
+import {
+  CreateItemModalComponent,
+  DeleteItemModalComponent
+} from '../../components';
 import { StockItem } from '@app/core/models';
 
 @Component({
@@ -18,7 +21,7 @@ import { StockItem } from '@app/core/models';
               <div class="buttons is-right">
                 <button
                   class="button is-small is-dark"
-                  (click)="onCreateModalOpen($event)"
+                  (click)="onCreateModalOpen()"
                 >
                   create
                 </button>
@@ -31,7 +34,10 @@ import { StockItem } from '@app/core/models';
                 add item to storages anymore.
               </p>
               <div class="buttons is-right">
-                <button class="button is-small is-dark">
+                <button
+                  class="button is-small is-dark"
+                  (click)="onDeleteModalOpen()"
+                >
                   delete
                 </button>
               </div>
@@ -67,24 +73,36 @@ import { StockItem } from '@app/core/models';
         </div>
       </div>
     </div>
-    <app-create-item-modal
-      (close)="onCreateModalClose($event)"
-    ></app-create-item-modal>
+    <app-create-item-modal (close)="onCreateModalClose($event)">
+    </app-create-item-modal>
+    <app-delete-item-modal (close)="onDeleteModalClose($event)">
+    </app-delete-item-modal>
   `,
   styleUrls: ['./control-panel.component.scss']
 })
 export class ControlPanelComponent {
   @ViewChild(CreateItemModalComponent, { static: false })
   createModal: CreateItemModalComponent;
+  @ViewChild(DeleteItemModalComponent, { static: false })
+  deleteModal: DeleteItemModalComponent;
 
   constructor() {}
 
-  onCreateModalOpen(event) {
+  onCreateModalOpen() {
     this.createModal.openModal();
+  }
+
+  onDeleteModalOpen() {
+    this.deleteModal.openModal();
   }
 
   onCreateModalClose(item: StockItem) {
     // TODO: save item
+    console.log(item);
+  }
+
+  onDeleteModalClose(item: StockItem) {
+    // TODO: remove item
     console.log(item);
   }
 }

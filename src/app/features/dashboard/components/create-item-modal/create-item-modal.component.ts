@@ -47,11 +47,11 @@ import { StockItemCategory, StockItem } from '@app/core/models';
           </form>
         </section>
         <footer class="modal-card-foot">
-          <button class="button" (click)="closeModal(true)">
+          <button class="button is-small" (click)="closeModal(true)">
             Cancel
           </button>
           <button
-            class="button is-link"
+            class="button is-small is-link"
             (click)="closeModal(false)"
             [disabled]="!createForm.valid"
           >
