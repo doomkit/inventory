@@ -1,8 +1,5 @@
-import { Component, Output, EventEmitter } from '@angular/core';
-import { Observable } from 'rxjs';
-import { Store } from '@ngrx/store';
+import { Component, Output, EventEmitter, Input } from '@angular/core';
 import { StockItem } from '@app/core/models';
-import * as fromStore from '@core/store';
 
 @Component({
   selector: 'app-delete-item-modal',
@@ -49,9 +46,7 @@ import * as fromStore from '@core/store';
             </thead>
             <tbody>
               <tr
-                *ngFor="
-                  let item of stockItems$ | async | search: 'name':searchQuery
-                "
+                *ngFor="let item of items | search: 'name':searchQuery"
                 [ngClass]="{ 'is-selected': item === selectedItem }"
               >
                 <th>{{ item.id }}</th>
@@ -90,15 +85,10 @@ import * as fromStore from '@core/store';
 })
 export class DeleteItemModalComponent {
   @Output() close: EventEmitter<StockItem | null> = new EventEmitter();
-  stockItems$: Observable<StockItem[]>;
+  @Input() items: StockItem[];
   opened: boolean = false;
   searchQuery: string = '';
   selectedItem: StockItem;
-
-  constructor(private store: Store<fromStore.InventoryState>) {
-    this.stockItems$ = this.store.select(fromStore.getStockItems);
-    this.store.dispatch(new fromStore.LoadItems());
-  }
 
   public openModal(): void {
     this.opened = true;

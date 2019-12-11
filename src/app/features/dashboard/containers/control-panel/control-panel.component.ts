@@ -4,6 +4,9 @@ import {
   DeleteItemModalComponent
 } from '../../components';
 import { StockItem } from '@app/core/models';
+import { Observable } from 'rxjs';
+import { Store } from '@ngrx/store';
+import * as fromStore from '@core/store';
 
 @Component({
   selector: 'app-control-panel',
@@ -75,7 +78,10 @@ import { StockItem } from '@app/core/models';
     </div>
     <app-create-item-modal (close)="onCreateModalClose($event)">
     </app-create-item-modal>
-    <app-delete-item-modal (close)="onDeleteModalClose($event)">
+    <app-delete-item-modal
+      [items]="stockItems$ | async"
+      (close)="onDeleteModalClose($event)"
+    >
     </app-delete-item-modal>
   `,
   styleUrls: ['./control-panel.component.scss']
@@ -85,14 +91,17 @@ export class ControlPanelComponent {
   createModal: CreateItemModalComponent;
   @ViewChild(DeleteItemModalComponent, { static: false })
   deleteModal: DeleteItemModalComponent;
+  stockItems$: Observable<StockItem[]>;
 
-  constructor() {}
+  constructor(private store: Store<fromStore.InventoryState>) {}
 
   onCreateModalOpen() {
     this.createModal.openModal();
   }
 
   onDeleteModalOpen() {
+    this.stockItems$ = this.store.select(fromStore.getStockItems);
+    this.store.dispatch(new fromStore.LoadItems());
     this.deleteModal.openModal();
   }
 
