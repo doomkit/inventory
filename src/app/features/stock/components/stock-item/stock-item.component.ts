@@ -14,10 +14,10 @@ import { StockItem } from '@app/core/models';
         <div class="content">
           <p>
             <strong>#{{ item.id }}</strong> &nbsp;
-            <small>{{ item.name }}</small>
             <br />
-            {{ item.details }}
+            <strong>{{ item.name }}</strong>
           </p>
+          <p>{{ item.description }}</p>
           <p>
             <small>Weight: {{ item.weight }}</small>
           </p>

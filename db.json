@@ -45,7 +45,7 @@
     {
       "id": 2,
       "name": "Logitech Keyboard H000",
-      "description": "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptatum similique quisquam distinctio ex, consequatur reiciendis. Pariatur, libero delectus praesentium unde eveniet sequi saepe, veritatis nulla odit at vero, alias omnis.",
+      "description": "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptatum distinctio ex, consequatur reiciendis. Pariatur, libero delectus praesentium unde eveniet sequi saepe, nulla odit at vero, alias omnis.",
       "category": "Accessories",
       "photo": "https://picsum.photos/id/195/200/200",
       "weight": 226
@@ -53,7 +53,7 @@
     {
       "id": 3,
       "name": "Magic Mouse, Pink Gold Edition",
-      "description": "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptatum similique quisquam distinctio ex, consequatur reiciendis. Pariatur, libero delectus praesentium unde eveniet sequi saepe, veritatis nulla odit at vero, alias omnis.",
+      "description": "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptatum similique quisquam distinctio ex, consequatur reiciendis.",
       "category": "Accessories",
       "photo": "https://picsum.photos/id/90/200/200",
       "weight": 630
@@ -61,7 +61,7 @@
     {
       "id": 4,
       "name": "USB Type-C charging Adapter",
-      "description": "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptatum similique quisquam distinctio ex, consequatur reiciendis. Pariatur, libero delectus praesentium unde eveniet sequi saepe, veritatis nulla odit at vero, alias omnis.",
+      "description": "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptatum similique quisquam distinctio ex, consequatur unde eveniet sequi saepe, veritatis nulla odit at vero, alias omnis.",
       "category": "Accessories",
       "photo": "https://picsum.photos/id/874/200/200",
       "weight": 130
@@ -77,7 +77,7 @@
     {
       "id": 6,
       "name": "Oculus Rift S, VR Helmet",
-      "description": "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptatum similique quisquam distinctio ex, consequatur reiciendis. Pariatur, libero delectus praesentium unde eveniet sequi saepe, veritatis nulla odit at vero, alias omnis.",
+      "description": "Lorem ipsum dolor, sit amet conelit. Voluptatum similique quisquam reiciendis. Pariatur, libero delectus praesentium unde eveniet sequi saepe, veritatis nulla odit at vero, alias omnis.",
       "category": "Accessories",
       "photo": "https://picsum.photos/id/387/200/200",
       "weight": 699
@@ -85,7 +85,7 @@
     {
       "id": 7,
       "name": "Tony Stark EDITH Glasses",
-      "description": "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptatum similique quisquam distinctio ex, consequatur reiciendis. Pariatur, libero delectus praesentium unde eveniet sequi saepe, veritatis nulla odit at vero, alias omnis.",
+      "description": "Lorem voluptatum similique quisquam distinctio ex, consequatur reiciendis. Pariatur, libero delectus praesentium unde eveniet sequi saepe, veritatis nulla odit at vero, alias omnis.",
       "category": "Accessories",
       "photo": "https://picsum.photos/id/107/200/200",
       "weight": 301
@@ -93,7 +93,7 @@
     {
       "id": 8,
       "name": "Thermostat Honeywell Evohome",
-      "description": "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptatum similique quisquam distinctio ex, consequatur reiciendis. Pariatur, libero delectus praesentium unde eveniet sequi saepe, veritatis nulla odit at vero, alias omnis.",
+      "description": "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptatum similique quisquam reiciendis. Pariatur, libero delectus praesentium unde eveniet sequi saepe, veritatis nulla odit at vero, alias omnis.",
       "category": "Accessories",
       "photo": "https://picsum.photos/id/502/200/200",
       "weight": 670
