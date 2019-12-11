@@ -3,5 +3,7 @@ export enum StockItemCategory {
   GARDEN = 'Garden',
   CAR = 'Car',
   TOOLS = 'Tools',
-  HOME = 'Home'
+  HOME = 'Home',
+
+  ACCESSORIES = 'Accessories'
 }

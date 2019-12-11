@@ -1,52 +1,126 @@
 {
-  "stock-items": [
+  "stocks": [
     {
       "id": 0,
-      "name": "A"
+      "name": "Dejvice Stock",
+      "details": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum ullam nihil, atque similique minus suscipit dolor, officiis vitae iure vel praesentium sed, iusto corrupti quasi exercitationem pariatur nemo. Maiores, error.",
+      "square": "1200m²",
+      "photo_url": "https://picsum.photos/id/631/200/200",
+      "address": null
     },
     {
       "id": 1,
-      "name": "B"
+      "name": "Vresovice Stock",
+      "details": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum ullam nihil, atque similique minus suscipit dolor, officiis vitae iure vel praesentium sed, iusto corrupti quasi exercitationem pariatur nemo. Maiores, error.",
+      "square": "800m²",
+      "photo_url": "https://picsum.photos/id/951/200/200",
+      "address": null
     },
     {
       "id": 2,
-      "name": "C"
+      "name": "Smichov Stock",
+      "details": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum ullam nihil, atque similique minus suscipit dolor, officiis vitae iure vel praesentium sed, iusto corrupti quasi exercitationem pariatur nemo. Maiores, error.",
+      "square": "1500m²",
+      "photo_url": "https://picsum.photos/id/806/200/200",
+      "address": null
+    }
+  ],
+  "stock-items": [
+    {
+      "id": 0,
+      "name": "USB drive 32GB Western Digital",
+      "description": "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptatum similique quisquam distinctio ex, consequatur reiciendis. Pariatur, libero delectus praesentium unde eveniet sequi saepe, veritatis nulla odit at vero, alias omnis.",
+      "category": "Accessories",
+      "photo": "https://picsum.photos/200/200",
+      "weight": 97
+    },
+    {
+      "id": 1,
+      "name": "PS4 Controller Dualshock 3",
+      "description": "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptatum similique quisquam distinctio ex, consequatur reiciendis. Pariatur, libero delectus praesentium unde eveniet sequi saepe, veritatis nulla odit at vero, alias omnis.",
+      "category": "Accessories",
+      "photo": "https://picsum.photos/200/200",
+      "weight": 551
+    },
+    {
+      "id": 2,
+      "name": "Logitech Keyboard H000",
+      "description": "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptatum similique quisquam distinctio ex, consequatur reiciendis. Pariatur, libero delectus praesentium unde eveniet sequi saepe, veritatis nulla odit at vero, alias omnis.",
+      "category": "Accessories",
+      "photo": "https://picsum.photos/200/200",
+      "weight": 226
     },
     {
       "id": 3,
-      "name": "D"
+      "name": "Magic Mouse, Pink Gold Edition",
+      "description": "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptatum similique quisquam distinctio ex, consequatur reiciendis. Pariatur, libero delectus praesentium unde eveniet sequi saepe, veritatis nulla odit at vero, alias omnis.",
+      "category": "Accessories",
+      "photo": "https://picsum.photos/200/200",
+      "weight": 630
     },
     {
       "id": 4,
-      "name": "E"
+      "name": "USB Type-C charging Adapter",
+      "description": "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptatum similique quisquam distinctio ex, consequatur reiciendis. Pariatur, libero delectus praesentium unde eveniet sequi saepe, veritatis nulla odit at vero, alias omnis.",
+      "category": "Accessories",
+      "photo": "https://picsum.photos/200/200",
+      "weight": 130
     },
     {
       "id": 5,
-      "name": "F"
+      "name": "Monitor stand",
+      "description": "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptatum similique quisquam distinctio ex, consequatur reiciendis. Pariatur, libero delectus praesentium unde eveniet sequi saepe, veritatis nulla odit at vero, alias omnis.",
+      "category": "Accessories",
+      "photo": "https://picsum.photos/200/200",
+      "weight": 423
     },
     {
       "id": 6,
-      "name": "G"
+      "name": "Oculus Rift S, VR Helmet",
+      "description": "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptatum similique quisquam distinctio ex, consequatur reiciendis. Pariatur, libero delectus praesentium unde eveniet sequi saepe, veritatis nulla odit at vero, alias omnis.",
+      "category": "Accessories",
+      "photo": "https://picsum.photos/200/200",
+      "weight": 699
     },
     {
       "id": 7,
-      "name": "H"
+      "name": "Tony Stark EDITH Glasses",
+      "description": "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptatum similique quisquam distinctio ex, consequatur reiciendis. Pariatur, libero delectus praesentium unde eveniet sequi saepe, veritatis nulla odit at vero, alias omnis.",
+      "category": "Accessories",
+      "photo": "https://picsum.photos/200/200",
+      "weight": 301
     },
     {
       "id": 8,
-      "name": "I"
+      "name": "Thermostat Honeywell Evohome",
+      "description": "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptatum similique quisquam distinctio ex, consequatur reiciendis. Pariatur, libero delectus praesentium unde eveniet sequi saepe, veritatis nulla odit at vero, alias omnis.",
+      "category": "Accessories",
+      "photo": "https://picsum.photos/200/200",
+      "weight": 670
     },
     {
       "id": 9,
-      "name": "J"
+      "name": "Dinosaur Leather Mouse Pad",
+      "description": "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptatum similique quisquam distinctio ex, consequatur reiciendis. Pariatur, libero delectus praesentium unde eveniet sequi saepe, veritatis nulla odit at vero, alias omnis.",
+      "category": "Accessories",
+      "photo": "https://picsum.photos/200/200",
+      "weight": 167
     },
     {
       "id": 10,
-      "name": "K"
+      "name": "Classic Cisco Phone WXZ-3000-DG",
+      "description": "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptatum similique quisquam distinctio ex, consequatur reiciendis. Pariatur, libero delectus praesentium unde eveniet sequi saepe, veritatis nulla odit at vero, alias omnis.",
+      "category": "Accessories",
+      "photo": "https://picsum.photos/200/200",
+      "weight": 741
     },
     {
       "id": 11,
-      "name": "L"
+      "name": "On-Ear Noise-Canceling Headphones",
+      "description": "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptatum similique quisquam distinctio ex, consequatur reiciendis. Pariatur, libero delectus praesentium unde eveniet sequi saepe, veritatis nulla odit at vero, alias omnis.",
+      "category": "Accessories",
+      "photo": "https://picsum.photos/200/200",
+      "weight": 186
     }
   ]
 }

@@ -9,24 +9,16 @@ import { Router } from '@angular/router';
       <article class="media">
         <div class="media-left">
           <figure class="image is-128x128">
-            <!-- 
-						<img [src]="stock?.photo_url" alt="icon" />
-						-->
-            <img src="https://picsum.photos/id/606/200/200" alt="" />
+            <img [src]="stock?.photo_url" alt="icon" />
           </figure>
         </div>
         <div class="media-content">
           <div class="content">
             <p>
-              <strong>Stock Name<!--{{ stock?.name }}--></strong>&nbsp;<small
-                >#<!--{{ stock?.id }}-->0</small
-              >
+              <strong>{{ stock.name }}</strong
+              >&nbsp;<small>#{{ stock?.id }}</small>
               <br />
-              <!--{{ stock?.details }}-->
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad eius
-              possimus velit, quidem repudiandae voluptates rerum. Dolorem ipsam
-              voluptatem delectus, possimus amet veritatis sequi beatae
-              praesentium quos molestiae impedit ut.
+              {{ stock?.details }}
             </p>
             <p>
               <small>Address</small>
@@ -35,7 +27,7 @@ import { Router } from '@angular/router';
           <div class="buttons is-right">
             <button
               class="button is-small is-link"
-              (click)="navigateToItems($event, 1)"
+              (click)="navigateToItems($event, stock.id)"
             >
               view
             </button>
@@ -47,7 +39,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./stock-list-item.component.scss']
 })
 export class StockListItemComponent implements OnInit {
-  @Input() stock: Stock | string;
+  @Input() stock: Stock;
 
   constructor(private router: Router) {}
 

@@ -6,5 +6,5 @@ export interface Stock {
   details: string;
   square: string;
   photo_url: string;
-  address: Address;
+  address?: Address;
 }

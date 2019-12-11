@@ -10,7 +10,7 @@ import { Observable } from 'rxjs';
     <div class="section">
       <div class="container">
         <app-stock-list-item
-          *ngFor="let stock of stocks"
+          *ngFor="let stock of stocks$ | async"
           [stock]="stock"
         ></app-stock-list-item>
       </div>
@@ -21,10 +21,9 @@ import { Observable } from 'rxjs';
 export class StockListComponent implements OnInit {
   stocks$: Observable<Stock[]>;
 
-  stocks = ['a', 'b', 'c'];
-
   constructor(private store: Store<fromStore.InventoryState>) {
-    // this.stocks$ = this.store.select(fromStore.getStockState)
+    this.stocks$ = this.store.select(fromStore.getStocks);
+    this.store.dispatch(new fromStore.LoadStocks());
   }
 
   ngOnInit() {}
