@@ -7,16 +7,20 @@ import { StockItem } from '@app/core/models';
     <div class="card stock-item">
       <div class="card-image">
         <figure class="image is-4by3">
-          <img
-            src="https://bulma.io/images/placeholders/1280x960.png"
-            alt="Placeholder image"
-          />
+          <img [src]="item.photo" alt="image" />
         </figure>
       </div>
       <div class="card-content">
         <div class="content">
-          <p># {{ item.id }}</p>
-          <p>name: {{ item.name }}</p>
+          <p>
+            <strong>#{{ item.id }}</strong> &nbsp;
+            <small>{{ item.name }}</small>
+            <br />
+            {{ item.details }}
+          </p>
+          <p>
+            <small>Weight: {{ item.weight }}</small>
+          </p>
         </div>
       </div>
     </div>
