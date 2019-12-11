@@ -60,13 +60,16 @@ export class ItemsListComponent implements OnInit {
   };
   elementsOnPage = 9;
   selectedPage = 1;
+  stockId: number;
 
   constructor(
     private store: Store<fromStore.InventoryState>,
     private route: ActivatedRoute,
     private router: Router,
     private cdRef: ChangeDetectorRef
-  ) {}
+  ) {
+    this.stockId = parseInt(this.route.snapshot.url[0].path, 10);
+  }
 
   ngOnInit(): void {
     this.stockItems$ = this.store.select(fromStore.getStockItems);
@@ -91,7 +94,9 @@ export class ItemsListComponent implements OnInit {
 
   onPageChange(page): void {
     this.selectedPage = page;
-    this.router.navigate(['/dashboard/stock'], { queryParams: { page } });
+    this.router.navigate([`/dashboard/stock/${this.stockId}`], {
+      queryParams: { page }
+    });
     /*
      *  Bad page number is handled in Paginator Component
      *  because this component counts pages according to
