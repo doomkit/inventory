@@ -4,14 +4,18 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { SharedModule } from '@shared/shared.module';
 
-import { DashboardComponent, StockListComponent } from './containers';
-import { NavbarComponent } from './components';
+import { DashboardComponent, ControlPanelComponent } from './containers';
+import { NavbarComponent, CreateItemModalComponent } from './components';
 
 const routes: Routes = [
   {
     path: '',
     component: DashboardComponent,
     children: [
+      {
+        path: '',
+        component: ControlPanelComponent
+      },
       {
         path: 'stock',
         loadChildren: () =>
@@ -25,6 +29,11 @@ const routes: Routes = [
 
 @NgModule({
   imports: [CommonModule, RouterModule.forChild(routes), SharedModule],
-  declarations: [DashboardComponent, NavbarComponent, StockListComponent]
+  declarations: [
+    DashboardComponent,
+    ControlPanelComponent,
+    NavbarComponent,
+    CreateItemModalComponent
+  ]
 })
 export class DashboardModule {}

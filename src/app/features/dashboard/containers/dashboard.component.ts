@@ -20,7 +20,7 @@ import { User } from '@app/core/models';
         [username]="(user$ | async).name"
         (logout)="onLogout()"
       ></app-navbar>
-      <!-- <app-breadcrumb [breadcrumbs]="breadcrumbs"></app-breadcrumb> -->
+      <!--<app-breadcrumb [breadcrumbs]="breadcrumbs"></app-breadcrumb>-->
       <router-outlet></router-outlet>
     </div>
   `

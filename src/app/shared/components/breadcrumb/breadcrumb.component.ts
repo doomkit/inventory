@@ -4,16 +4,18 @@ import { UrlSegment, Router } from '@angular/router';
 @Component({
   selector: 'app-breadcrumb',
   template: `
-    <nav class="breadcrumb is-small" aria-label="breadcrumbs">
-      <ul>
-        <li
-          *ngFor="let crumb of breadcrumbs; let lastcrumb = last"
-          [ngClass]="{ 'is-active': lastcrumb }"
-        >
-          <a (click)="navigateToCrumb(crumb)">{{ crumb.path | titlecase }}</a>
-        </li>
-      </ul>
-    </nav>
+    <div class="container">
+      <nav class="breadcrumb is-small" aria-label="breadcrumbs">
+        <ul>
+          <li
+            *ngFor="let crumb of breadcrumbs; let lastcrumb = last"
+            [ngClass]="{ 'is-active': lastcrumb }"
+          >
+            <a (click)="navigateToCrumb(crumb)">{{ crumb.path | titlecase }}</a>
+          </li>
+        </ul>
+      </nav>
+    </div>
   `,
   styleUrls: ['./breadcrumb.component.scss']
 })
