@@ -1,31 +1,17 @@
-import {
-  ActionReducerMap,
-  createFeatureSelector,
-  createSelector
-} from '@ngrx/store';
+import { ActionReducerMap, createFeatureSelector } from '@ngrx/store';
 import * as fromItems from './stock-items.reducer';
+import * as fromStocks from './stock.reducer';
 
-export interface StockState {
+export interface InventoryState {
+  stocks: fromStocks.StockState;
   items: fromItems.StockItemState;
 }
-export const reducers: ActionReducerMap<StockState> = {
+
+export const reducers: ActionReducerMap<InventoryState> = {
+  stocks: fromStocks.reducer,
   items: fromItems.reducer
 };
 
-export const getStockState = createFeatureSelector<StockState>('stock');
-export const getStockItemsState = createSelector(
-  getStockState,
-  (state: StockState) => state.items
-);
-export const getAllStockItems = createSelector(
-  getStockItemsState,
-  fromItems.getStockItems
-);
-export const getAllStockItemsLoaded = createSelector(
-  getStockItemsState,
-  fromItems.getStockItemsLoaded
-);
-export const getAllStockItemsLoading = createSelector(
-  getStockItemsState,
-  fromItems.getStockItemsLoading
+export const getInventoryState = createFeatureSelector<InventoryState>(
+  'inventory'
 );

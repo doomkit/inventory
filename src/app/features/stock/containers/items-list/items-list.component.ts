@@ -62,14 +62,14 @@ export class ItemsListComponent implements OnInit {
   selectedPage = 1;
 
   constructor(
-    private store: Store<fromStore.StockState>,
+    private store: Store<fromStore.InventoryState>,
     private route: ActivatedRoute,
     private router: Router,
     private cdRef: ChangeDetectorRef
   ) {}
 
   ngOnInit(): void {
-    this.stockItems$ = this.store.select(fromStore.getAllStockItems);
+    this.stockItems$ = this.store.select(fromStore.getStockItems);
     this.store.dispatch(new fromStore.LoadItems());
 
     // TODO: load stock's categories

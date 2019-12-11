@@ -41,7 +41,7 @@ const routes: Routes = [
   imports: [
     CommonModule,
     RouterModule.forChild(routes),
-    StoreModule.forFeature('stock', reducers),
+    StoreModule.forFeature('inventory', reducers),
     EffectsModule.forFeature(effects),
     SharedModule
   ],
