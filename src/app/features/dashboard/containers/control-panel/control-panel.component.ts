@@ -1,5 +1,6 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { CreateItemModalComponent } from '../../components';
+import { StockItem } from '@app/core/models';
 
 @Component({
   selector: 'app-control-panel',
@@ -66,21 +67,24 @@ import { CreateItemModalComponent } from '../../components';
         </div>
       </div>
     </div>
-    <app-create-item-modal></app-create-item-modal>
+    <app-create-item-modal
+      (close)="onCreateModalClose($event)"
+    ></app-create-item-modal>
   `,
   styleUrls: ['./control-panel.component.scss']
 })
-export class ControlPanelComponent implements OnInit {
+export class ControlPanelComponent {
   @ViewChild(CreateItemModalComponent, { static: false })
   createModal: CreateItemModalComponent;
 
   constructor() {}
 
-  ngOnInit() {}
-
   onCreateModalOpen(event) {
     this.createModal.openModal();
   }
 
-  onCreateModalClose() {}
+  onCreateModalClose(item: StockItem) {
+    // TODO: save item
+    console.log(item);
+  }
 }
