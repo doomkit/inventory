@@ -16,6 +16,6 @@ export class SearchPipe implements PipeTransform {
     if (!by || !val) {
       return data;
     }
-    return data.filter(el => el[by] === val);
+    return data.filter(el => el[by].includes(val));
   }
 }

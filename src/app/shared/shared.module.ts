@@ -8,15 +8,23 @@ import {
   PaginationComponent
 } from './components';
 
+import { SearchPipe } from './pipes';
+
 @NgModule({
   imports: [CommonModule, FormsModule, ReactiveFormsModule],
-  declarations: [ButtonComponent, BreadcrumbComponent, PaginationComponent],
+  declarations: [
+    ButtonComponent,
+    BreadcrumbComponent,
+    PaginationComponent,
+    SearchPipe
+  ],
   exports: [
     FormsModule,
     ReactiveFormsModule,
     ButtonComponent,
     BreadcrumbComponent,
-    PaginationComponent
+    PaginationComponent,
+    SearchPipe
   ]
 })
 export class SharedModule {}
