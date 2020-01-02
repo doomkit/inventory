@@ -52,6 +52,7 @@ import { StockItemCategory, StockItem } from '@app/core/models';
           </button>
           <button
             class="button is-small is-link"
+            [ngClass]="{ 'is-loading': loading }"
             (click)="closeModal(false)"
             [disabled]="!createForm.valid"
           >
@@ -70,6 +71,7 @@ export class CreateItemModalComponent {
   controls: string[] = [];
   categories: string[] = [];
   selectedCategory: string;
+  loading = false;
 
   constructor(private fb: FormBuilder) {
     for (let category in StockItemCategory) {
@@ -114,11 +116,25 @@ export class CreateItemModalComponent {
   }
 
   closeModal(canceled: boolean): void {
-    this.opened = false;
     if (!canceled) {
       let item: StockItem = this.createForm.value;
+      item.category = this.createForm.controls['category'].value;
       this.close.emit(item);
+      this.loading = true;
+      Object.keys(this.createForm.controls).forEach(key => {
+        this.createForm.controls[key].disable();
+      });
+      setTimeout(() => {
+        this.opened = false;
+        this.loading = false;
+        Object.keys(this.createForm.controls).forEach(key => {
+          this.createForm.controls[key].enable();
+        });
+        this.resetForm();
+      }, 1000);
+    } else {
+      this.opened = false;
+      this.resetForm();
     }
-    this.resetForm();
   }
 }

@@ -93,25 +93,26 @@ export class ControlPanelComponent {
   deleteModal: DeleteItemModalComponent;
   stockItems$: Observable<StockItem[]>;
 
-  constructor(private store: Store<fromStore.InventoryState>) {}
+  constructor(private store: Store<fromStore.InventoryState>) {
+    this.stockItems$ = this.store.select(fromStore.getStockItems);
+    // this.store.dispatch(new fromStore.LoadItems());
+  }
 
   onCreateModalOpen() {
     this.createModal.openModal();
   }
 
   onDeleteModalOpen() {
-    this.stockItems$ = this.store.select(fromStore.getStockItems);
-    this.store.dispatch(new fromStore.LoadItems());
     this.deleteModal.openModal();
   }
 
   onCreateModalClose(item: StockItem) {
-    // TODO: save item
-    console.log(item);
+    this.store.dispatch(new fromStore.CreateItem(item));
+    this.store.dispatch(new fromStore.LoadItems());
   }
 
   onDeleteModalClose(item: StockItem) {
-    // TODO: remove item
-    console.log(item);
+    this.store.dispatch(new fromStore.DeleteItem(item));
+    this.store.dispatch(new fromStore.LoadItems());
   }
 }

@@ -23,6 +23,7 @@ import { StockItem } from '@app/core/models';
             <p class="control has-icons-left has-icons-right">
               <input
                 [(ngModel)]="searchQuery"
+                [disabled]="loading"
                 class="input"
                 type="text"
                 placeholder="Search"
@@ -73,6 +74,7 @@ import { StockItem } from '@app/core/models';
           <button
             class="button is-small is-danger"
             (click)="closeModal(false)"
+            [ngClass]="{ 'is-loading': loading }"
             [disabled]="!selectedItem"
           >
             Delete
@@ -89,6 +91,7 @@ export class DeleteItemModalComponent {
   opened: boolean = false;
   searchQuery: string = '';
   selectedItem: StockItem;
+  loading: boolean = false;
 
   public openModal(): void {
     this.opened = true;
@@ -103,11 +106,19 @@ export class DeleteItemModalComponent {
   }
 
   closeModal(canceled: boolean): void {
-    this.opened = false;
-    this.searchQuery = '';
-    this.selectItem = null;
     if (!canceled && this.selectedItem) {
       this.close.emit(this.selectedItem);
+      this.loading = true;
+      setTimeout(() => {
+        this.loading = false;
+        this.opened = false;
+        this.searchQuery = '';
+        this.selectItem = null;
+      }, 1000);
+    } else {
+      this.opened = false;
+      this.searchQuery = '';
+      this.selectItem = null;
     }
   }
 }

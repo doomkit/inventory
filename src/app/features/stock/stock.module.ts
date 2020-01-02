@@ -3,10 +3,6 @@ import { CommonModule } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
 import { SharedModule } from '@shared/shared.module';
 
-import { StoreModule } from '@ngrx/store';
-import { EffectsModule } from '@ngrx/effects';
-import { reducers, effects } from '@core/store';
-
 import { ManagerGuard } from '@core/guards';
 
 import { StockComponent } from './stock.component';
@@ -38,13 +34,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [
-    CommonModule,
-    RouterModule.forChild(routes),
-    StoreModule.forFeature('inventory', reducers),
-    EffectsModule.forFeature(effects),
-    SharedModule
-  ],
+  imports: [CommonModule, RouterModule.forChild(routes), SharedModule],
   declarations: [
     StockComponent,
     ItemsListComponent,

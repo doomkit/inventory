@@ -47,6 +47,7 @@ export const DELETE_ITEM_SUCCESS = '[StockItems] Delete Item Success';
 
 export class DeleteItem implements Action {
   readonly type = DELETE_ITEM;
+  constructor(public payload: StockItem) {}
 }
 
 export class DeleteItemFail implements Action {

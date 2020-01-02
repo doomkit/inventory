@@ -21,6 +21,7 @@ export const getStocksLoading = createSelector(
   getStockState,
   fromStock.getStocksLoading
 );
+
 export const getStocksLoaded = createSelector(
   getStockState,
   fromStock.getStocksLoaded

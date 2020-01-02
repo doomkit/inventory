@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Actions, createEffect, ofType, Effect } from '@ngrx/effects';
+import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { of } from 'rxjs';
 import { map, catchError, mergeMap } from 'rxjs/operators';
 import { StockItemsService } from '@app/core/services';
@@ -8,7 +8,11 @@ import { StockItem } from '@app/core/models';
 
 @Injectable()
 export class StockItemsEffects {
-  @Effect()
+  constructor(
+    private actions$: Actions,
+    private stockItemsService: StockItemsService
+  ) {}
+
   loadStockItems$ = createEffect(() =>
     this.actions$.pipe(
       ofType(stockItemActions.LOAD_ITEMS),
@@ -21,34 +25,27 @@ export class StockItemsEffects {
     )
   );
 
-  @Effect()
   createStockItem$ = createEffect(() =>
     this.actions$.pipe(
       ofType(stockItemActions.CREATE_ITEM),
-      mergeMap((stockItem: StockItem) =>
-        this.stockItemsService.createStockItem(stockItem).pipe(
+      mergeMap((action: stockItemActions.CreateItem) => {
+        return this.stockItemsService.createStockItem(action.payload).pipe(
           map(stockItem => new stockItemActions.CreateItemSuccess(stockItem)),
           catchError(error => of(new stockItemActions.CreateItemFail(error)))
-        )
-      )
+        );
+      })
     )
   );
 
-  @Effect()
   deleteStockItem$ = createEffect(() =>
     this.actions$.pipe(
       ofType(stockItemActions.DELETE_ITEM),
-      mergeMap((stockItem: StockItem) =>
-        this.stockItemsService.deleteStockItem(stockItem).pipe(
+      mergeMap((action: stockItemActions.DeleteItem) =>
+        this.stockItemsService.deleteStockItem(action.payload).pipe(
           map(stockItem => new stockItemActions.DeleteItemSuccess(stockItem)),
           catchError(error => of(new stockItemActions.DeleteItemFail(error)))
         )
       )
     )
   );
-
-  constructor(
-    private actions$: Actions,
-    private stockItemsService: StockItemsService
-  ) {}
 }

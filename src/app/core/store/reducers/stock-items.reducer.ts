@@ -2,13 +2,13 @@ import * as fromItems from '../actions/stock-items.action';
 import { StockItem } from '@core/models';
 
 export interface StockItemState {
-  data: StockItem[];
+  entities: { [id: number]: StockItem };
   loaded: boolean;
   loading: boolean;
 }
 
 export const initialState: StockItemState = {
-  data: [],
+  entities: {},
   loaded: false,
   loading: false
 };
@@ -25,14 +25,33 @@ export function reducer(
       };
     }
     case fromItems.LOAD_ITEMS_SUCCESS: {
-      const data = action.payload;
+      const items = action.payload;
+      const entities = items.reduce(
+        (entities: { [id: number]: StockItem }, item: StockItem) => {
+          return {
+            ...entities,
+            [item.id]: item
+          };
+        },
+        { ...state.entities }
+      );
       return {
         ...state,
         loading: false,
         loaded: true,
-        data
+        entities
       };
     }
+
+    case fromItems.CREATE_ITEM_SUCCESS: {
+      const item = action.payload;
+      const entities = { ...state.entities, [item.id]: item };
+      return {
+        ...state,
+        entities
+      };
+    }
+    case fromItems.CREATE_ITEM_FAIL:
     case fromItems.LOAD_ITEMS_FAIL: {
       return {
         ...state,
@@ -46,4 +65,4 @@ export function reducer(
 
 export const getStockItemsLoading = (state: StockItemState) => state.loading;
 export const getStockItemsLoaded = (state: StockItemState) => state.loaded;
-export const getStockItems = (state: StockItemState) => state.data;
+export const getStockItems = (state: StockItemState) => state.entities;
