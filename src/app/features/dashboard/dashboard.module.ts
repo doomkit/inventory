@@ -11,10 +11,6 @@ import {
   DeleteItemModalComponent
 } from './components';
 
-import { StoreModule } from '@ngrx/store';
-import { reducers, effects } from '@app/core/store';
-import { EffectsModule } from '@ngrx/effects';
-
 const routes: Routes = [
   {
     path: '',
@@ -36,13 +32,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [
-    CommonModule,
-    RouterModule.forChild(routes),
-    StoreModule.forFeature('inventory', reducers),
-    EffectsModule.forFeature(effects),
-    SharedModule
-  ],
+  imports: [CommonModule, RouterModule.forChild(routes), SharedModule],
   declarations: [
     DashboardComponent,
     ControlPanelComponent,

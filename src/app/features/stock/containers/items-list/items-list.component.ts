@@ -1,12 +1,11 @@
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 
 import { StockItem } from '@app/core/models';
-import * as fromStore from '@core/store';
 
 import { FilterOptions } from '../../components/items-filter/filter-options';
+import { StockItemsService } from '@app/core/services';
 
 @Component({
   selector: 'app-items-list',
@@ -63,7 +62,7 @@ export class ItemsListComponent implements OnInit {
   stockId: number;
 
   constructor(
-    private store: Store<fromStore.InventoryState>,
+    private stockItemsService: StockItemsService,
     private route: ActivatedRoute,
     private router: Router,
     private cdRef: ChangeDetectorRef
@@ -72,8 +71,7 @@ export class ItemsListComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.stockItems$ = this.store.select(fromStore.getStockItems);
-    this.store.dispatch(new fromStore.LoadItems());
+    this.stockItems$ = this.stockItemsService.getStockItems();
 
     // TODO: load stock's categories
     this.allCategories = ['Furniture', 'Garden', 'Car', 'Tools', 'Home'];

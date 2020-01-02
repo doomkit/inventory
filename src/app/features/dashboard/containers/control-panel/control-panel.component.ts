@@ -5,8 +5,7 @@ import {
 } from '../../components';
 import { StockItem } from '@app/core/models';
 import { Observable } from 'rxjs';
-import { Store } from '@ngrx/store';
-import * as fromStore from '@core/store';
+import { StockItemsService } from '@app/core/services';
 
 @Component({
   selector: 'app-control-panel',
@@ -93,9 +92,8 @@ export class ControlPanelComponent {
   deleteModal: DeleteItemModalComponent;
   stockItems$: Observable<StockItem[]>;
 
-  constructor(private store: Store<fromStore.InventoryState>) {
-    this.stockItems$ = this.store.select(fromStore.getStockItems);
-    // this.store.dispatch(new fromStore.LoadItems());
+  constructor(private stockItemsService: StockItemsService) {
+    this.stockItems$ = this.stockItemsService.getStockItems();
   }
 
   onCreateModalOpen() {
@@ -107,12 +105,12 @@ export class ControlPanelComponent {
   }
 
   onCreateModalClose(item: StockItem) {
-    this.store.dispatch(new fromStore.CreateItem(item));
-    this.store.dispatch(new fromStore.LoadItems());
+    this.stockItemsService.createStockItem(item);
+    this.stockItems$ = this.stockItemsService.getStockItems();
   }
 
   onDeleteModalClose(item: StockItem) {
-    this.store.dispatch(new fromStore.DeleteItem(item));
-    this.store.dispatch(new fromStore.LoadItems());
+    this.stockItemsService.deleteStockItem(item);
+    this.stockItems$ = this.stockItemsService.getStockItems();
   }
 }
