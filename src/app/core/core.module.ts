@@ -14,9 +14,6 @@ import {
 
 import { FooterComponent } from './components';
 
-// FIXME: remove this when real backend will be prepared
-import { fakeBackendProvider } from './helpers/fake-backend';
-
 @NgModule({
   imports: [CommonModule, HttpClientModule],
   declarations: [FooterComponent],
@@ -29,9 +26,7 @@ import { fakeBackendProvider } from './helpers/fake-backend';
     AuthenticationService,
     StockItemsService,
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
-    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
-    // FIXME: remove this when real backend will be prepared
-    fakeBackendProvider
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true }
   ]
 })
 export class CoreModule {}
