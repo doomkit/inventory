@@ -13,9 +13,17 @@ import { environment } from '@env/environment';
 export class StockItemsService {
   constructor(private http: HttpClient) {}
 
-  getStockItems(): Observable<StockItem[]> {
+  getItems(): Observable<StockItem[]> {
     return this.http
       .get<StockItem[]>(`${environment.BASE_URL}/secured/items`)
+      .pipe(catchError(error => throwError(error)));
+  }
+
+  getStockItems(stockId: number): Observable<StockItem[]> {
+    return this.http
+      .get<StockItem[]>(
+        `${environment.BASE_URL}/secured/stock/${stockId}/items`
+      )
       .pipe(catchError(error => throwError(error)));
   }
 

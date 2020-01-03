@@ -19,14 +19,18 @@ export class StockService {
       .pipe(catchError(error => throwError(error)));
   }
 
-  /*
-	*	Can be used later
-	*
-
-  getStockById(id: number): Observable<Stock[]> {
+  getStockById(id: number): Observable<Stock> {
     return this.http
-      .get<Stock[]>(`${environment.BASE_URL}/stocks/${id}`)
-      .pipe(catchError(error => Observable.throw(error.json())));
-	}
-	*/
+      .get<Stock>(`${environment.BASE_URL}/secured/stocks/${id}`)
+      .pipe(catchError(error => throwError(error)));
+  }
+
+  changeQuantity(stockId: number, itemId: number, quantity: number) {
+    return this.http
+      .patch(`${environment.BASE_URL}/secured/stock/${stockId}/item`, {
+        itemId,
+        quantity
+      })
+      .pipe(catchError(error => throwError(error)));
+  }
 }

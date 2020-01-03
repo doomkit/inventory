@@ -99,7 +99,7 @@ export class ControlPanelComponent {
   }
 
   onDeleteModalOpen() {
-    this.stockItems$ = this.stockItemsService.getStockItems();
+    this.stockItems$ = this.stockItemsService.getItems();
     this.deleteModal.openModal();
   }
 
