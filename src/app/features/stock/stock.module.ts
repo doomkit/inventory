@@ -9,7 +9,8 @@ import { StockComponent } from './stock.component';
 import {
   StockItemComponent,
   ItemsFilterComponent,
-  StockListItemComponent
+  StockListItemComponent,
+  AddItemModalComponent
 } from './components';
 import { ItemsListComponent, StockListComponent } from './containers';
 
@@ -41,7 +42,8 @@ const routes: Routes = [
     StockItemComponent,
     ItemsFilterComponent,
     StockListComponent,
-    StockListItemComponent
+    StockListItemComponent,
+    AddItemModalComponent
   ]
 })
 export class StockModule {}
