@@ -15,7 +15,7 @@ export class ManagerGuard implements CanActivate {
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
     const currentUser = this.authenticationService.currentUser;
-    if (currentUser && currentUser.type === UserRole.MANAGER) {
+    if (currentUser && UserRole[currentUser.type] === UserRole.MANAGER) {
       return true;
     }
     return false;

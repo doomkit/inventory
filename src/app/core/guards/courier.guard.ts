@@ -15,7 +15,7 @@ export class CourierGuard implements CanActivate {
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
     const currentUser = this.authenticationService.currentUser;
-    if (currentUser && currentUser.type === UserRole.COURIER) {
+    if (currentUser && UserRole[currentUser.type] === UserRole.COURIER) {
       return true;
     }
     return false;
