@@ -1,0 +1,13 @@
+.profile_card {
+  max-width: 600px;
+  margin: 0 auto;
+
+  .card-image {
+    .image {
+      img {
+        object-fit: cover;
+        object-position: top;
+      }
+    }
+  }
+}

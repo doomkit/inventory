@@ -98,7 +98,12 @@ import { Component, Output, EventEmitter, Input } from '@angular/core';
             </a>
 
             <div class="navbar-dropdown is-right is-boxed">
-              <a class="navbar-item">
+              <a
+                class="navbar-item"
+                routerLink="/dashboard/profile"
+                routerLinkActive="is-active"
+                [routerLinkActiveOptions]="{ exact: true }"
+              >
                 Details
               </a>
               <hr class="navbar-divider" />

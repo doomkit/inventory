@@ -4,7 +4,12 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { SharedModule } from '@shared/shared.module';
 
-import { DashboardComponent, ControlPanelComponent } from './containers';
+import {
+  DashboardComponent,
+  ControlPanelComponent,
+  ProfilePageComponent
+} from './containers';
+
 import {
   NavbarComponent,
   CreateItemModalComponent,
@@ -19,6 +24,10 @@ const routes: Routes = [
       {
         path: '',
         component: ControlPanelComponent
+      },
+      {
+        path: 'profile',
+        component: ProfilePageComponent
       },
       {
         path: 'stock',
@@ -38,7 +47,8 @@ const routes: Routes = [
     ControlPanelComponent,
     NavbarComponent,
     CreateItemModalComponent,
-    DeleteItemModalComponent
+    DeleteItemModalComponent,
+    ProfilePageComponent
   ]
 })
 export class DashboardModule {}
