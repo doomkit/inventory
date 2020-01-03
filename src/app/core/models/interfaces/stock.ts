@@ -1,10 +1,12 @@
 import { Address } from '@core/models';
+import { InStock } from './in-stock';
 
 export interface Stock {
-  id: number;
+  stockId: number;
   name: string;
   details: string;
   square: string;
-  photo_url: string;
+  photo: string;
   address?: Address;
+  inStock?: InStock[];
 }
