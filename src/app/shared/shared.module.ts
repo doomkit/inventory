@@ -9,6 +9,7 @@ import {
 } from './components';
 
 import { SearchPipe } from './pipes';
+import { ItemInfoPipe } from './pipes/item-info.pipe';
 
 @NgModule({
   imports: [CommonModule, FormsModule, ReactiveFormsModule],
@@ -16,7 +17,8 @@ import { SearchPipe } from './pipes';
     ButtonComponent,
     BreadcrumbComponent,
     PaginationComponent,
-    SearchPipe
+    SearchPipe,
+    ItemInfoPipe
   ],
   exports: [
     FormsModule,
@@ -24,7 +26,8 @@ import { SearchPipe } from './pipes';
     ButtonComponent,
     BreadcrumbComponent,
     PaginationComponent,
-    SearchPipe
+    SearchPipe,
+    ItemInfoPipe
   ]
 })
 export class SharedModule {}
