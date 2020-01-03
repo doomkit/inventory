@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 
 import { Stock } from '@core/models';
@@ -15,8 +15,8 @@ export class StockService {
 
   getStocks(): Observable<Stock[]> {
     return this.http
-      .get<Stock[]>(`${environment.BASE_URL}/stocks`)
-      .pipe(catchError(error => Observable.throw(error.json())));
+      .get<Stock[]>(`${environment.BASE_URL}/secured/stocks`)
+      .pipe(catchError(error => throwError(error)));
   }
 
   /*

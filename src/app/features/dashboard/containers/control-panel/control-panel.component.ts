@@ -92,25 +92,22 @@ export class ControlPanelComponent {
   deleteModal: DeleteItemModalComponent;
   stockItems$: Observable<StockItem[]>;
 
-  constructor(private stockItemsService: StockItemsService) {
-    this.stockItems$ = this.stockItemsService.getStockItems();
-  }
+  constructor(private stockItemsService: StockItemsService) {}
 
   onCreateModalOpen() {
     this.createModal.openModal();
   }
 
   onDeleteModalOpen() {
+    this.stockItems$ = this.stockItemsService.getStockItems();
     this.deleteModal.openModal();
   }
 
   onCreateModalClose(item: StockItem) {
     this.stockItemsService.createStockItem(item);
-    this.stockItems$ = this.stockItemsService.getStockItems();
   }
 
   onDeleteModalClose(item: StockItem) {
     this.stockItemsService.deleteStockItem(item);
-    this.stockItems$ = this.stockItemsService.getStockItems();
   }
 }

@@ -87,7 +87,6 @@ export class CreateItemModalComponent {
 
   private initForm(fb: FormBuilder): FormGroup {
     return fb.group({
-      name: ['', Validators.required],
       description: ['', Validators.required],
       photo: ['', Validators.required],
       weight: ['', Validators.required],

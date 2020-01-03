@@ -1,8 +1,7 @@
 import { StockItemCategory } from '@core/models';
 
 export interface StockItem {
-  id?: number;
-  name: string;
+  itemId?: number;
   description: string;
   category?: StockItemCategory;
   photo: string;

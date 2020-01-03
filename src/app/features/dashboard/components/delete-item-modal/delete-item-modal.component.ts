@@ -50,8 +50,8 @@ import { StockItem } from '@app/core/models';
                 *ngFor="let item of items | search: 'name':searchQuery"
                 [ngClass]="{ 'is-selected': item === selectedItem }"
               >
-                <th>{{ item.id }}</th>
-                <td>{{ item.name }}</td>
+                <th>{{ item.itemId }}</th>
+                <td>{{ item.description | itemInfo: 'name' }}</td>
                 <td>
                   <span class="tag is-primary is-small is-light">
                     {{ item.category }}
