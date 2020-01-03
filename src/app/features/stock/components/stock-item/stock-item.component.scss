@@ -1,3 +1,27 @@
 .stock-item {
   height: 100%;
 }
+
+.card-image {
+  height: 40%;
+  overflow: hidden;
+}
+.card-content {
+  height: 60%;
+  .content {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+}
+
+.button:focus {
+  outline: none;
+  box-shadow: none;
+  border-color: unset;
+}
+
+.buttons {
+  align-self: center;
+}

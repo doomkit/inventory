@@ -1,11 +1,9 @@
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Observable } from 'rxjs';
-
-import { StockItem } from '@app/core/models';
-
 import { FilterOptions } from '../../components/items-filter/filter-options';
-import { StockItemsService } from '@app/core/services';
+import { StockService } from '@app/core/services';
+import { first } from 'rxjs/operators';
+import { InStock } from '@app/core/models/interfaces/in-stock';
 
 @Component({
   selector: 'app-items-list',
@@ -20,29 +18,31 @@ import { StockItemsService } from '@app/core/services';
               (filterOptionsChange)="onFilterOptionsUpdate($event)"
             ></app-items-filter>
           </div>
+
           <div class="column is-9">
             <div class="columns is-multiline is-mobile">
               <!-- prettier-ignore -->
               <div class="column is-half-mobile is-one-third-tablet"
-                *ngFor="let item of stockItems$
-                  | async
-                  | slice: ((selectedPage - 1)* elementsOnPage) : (selectedPage * elementsOnPage)"
-              >
-                <app-stock-item [item]="item"></app-stock-item>
+								*ngFor="let item of stockItems 
+								| slice: ((selectedPage - 1)* elementsOnPage) : (selectedPage * elementsOnPage)"
+							>
+								<app-stock-item
+									[inStock]="item"
+									[stockId]="stockId"
+									(quantityChanged)="loadStocks()">
+								</app-stock-item>
               </div>
-              <div
-                *ngIf="!(stockItems$ | async)?.length"
-                class="column has-text-centered"
-              >
+              <div *ngIf="!stockItems.length" class="column has-text-centered">
                 <span class="delayed-text">No items to display</span>
               </div>
             </div>
           </div>
         </div>
+
         <app-pagination
           [elementsOnPage]="elementsOnPage"
           [selectedPage]="selectedPage"
-          [elementsCount]="(stockItems$ | async)?.length"
+          [elementsCount]="stockItems?.length"
           (selectPage)="onPageChange($event)"
         ></app-pagination>
       </div>
@@ -51,7 +51,7 @@ import { StockItemsService } from '@app/core/services';
   styleUrls: ['./items-list.component.scss']
 })
 export class ItemsListComponent implements OnInit {
-  stockItems$: Observable<StockItem[]>;
+  stockItems: InStock[];
   allCategories: string[];
   filterOptions: FilterOptions = {
     categories: [],
@@ -62,7 +62,7 @@ export class ItemsListComponent implements OnInit {
   stockId: number;
 
   constructor(
-    private stockItemsService: StockItemsService,
+    private stockService: StockService,
     private route: ActivatedRoute,
     private router: Router,
     private cdRef: ChangeDetectorRef
@@ -71,7 +71,7 @@ export class ItemsListComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.stockItems$ = this.stockItemsService.getStockItems();
+    this.loadStocks();
 
     // TODO: load stock's categories
     this.allCategories = ['Furniture', 'Garden', 'Car', 'Tools', 'Home'];
@@ -87,7 +87,6 @@ export class ItemsListComponent implements OnInit {
   onFilterOptionsUpdate(newOptions: FilterOptions): void {
     this.filterOptions = newOptions;
     // TODO: apply filter to loaded items
-    console.log(this.filterOptions);
   }
 
   onPageChange(page): void {
@@ -102,5 +101,16 @@ export class ItemsListComponent implements OnInit {
      *  the view of displayed items after it was checked.
      */
     this.cdRef.detectChanges();
+  }
+
+  loadStocks() {
+    this.stockService
+      .getStocks()
+      .pipe(first())
+      .subscribe(data => {
+        this.stockItems = data.find(
+          stock => stock.stockId === this.stockId
+        ).inStock;
+      });
   }
 }
