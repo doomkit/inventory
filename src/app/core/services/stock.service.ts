@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 
@@ -31,6 +31,23 @@ export class StockService {
         itemId,
         quantity
       })
+      .pipe(catchError(error => throwError(error)));
+  }
+
+  addItemToSotck(stockId: number, itemId: number) {
+    return this.http
+      .post(
+        `${environment.BASE_URL}/secured/stock/${stockId}/item?itemId=${itemId}`,
+        {}
+      )
+      .pipe(catchError(error => throwError(error)));
+  }
+
+  deleteItemFromSotck(stockId: number, itemId: number) {
+    return this.http
+      .delete(
+        `${environment.BASE_URL}/secured/stock/${stockId}/item?itemId=${itemId}`
+      )
       .pipe(catchError(error => throwError(error)));
   }
 }

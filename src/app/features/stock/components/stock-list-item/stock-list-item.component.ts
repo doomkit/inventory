@@ -15,10 +15,10 @@ import { Router } from '@angular/router';
         <div class="media-content">
           <div class="content">
             <p>
-              <strong>{{ stock.details }}</strong
-              >&nbsp;<small>#{{ stock?.stockId }}</small>
+              <small>#{{ stock?.stockId }} &nbsp;</small>
+              <strong>{{ stock.details | itemInfo: 'name' }}</strong>
               <br />
-              {{ stock?.details }}
+              {{ stock?.details | itemInfo: 'description' }}
             </p>
             <p>
               <small>Address</small>

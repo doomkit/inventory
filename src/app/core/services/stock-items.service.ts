@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import { StockItem } from '@core/models';
 import { Observable, throwError } from 'rxjs';
@@ -28,6 +28,13 @@ export class StockItemsService {
   }
 
   createStockItem(payload: StockItem): Observable<StockItem> {
+    // TODO: select manufacturer from UI
+    payload.manufacturer = {
+      companyId: 2,
+      companyType: 'manufacturer',
+      companyName: 'IKEA',
+      valid: true
+    };
     return this.http
       .post<StockItem>(`${environment.BASE_URL}/secured/item`, payload)
       .pipe(catchError(error => throwError(error)));

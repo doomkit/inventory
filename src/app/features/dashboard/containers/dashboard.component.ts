@@ -17,7 +17,7 @@ import { User } from '@app/core/models';
   template: `
     <div style="min-height: 100%;">
       <app-navbar
-        [username]="(user$ | async).name"
+        [username]="(user$ | async)?.name"
         (logout)="onLogout()"
       ></app-navbar>
       <!--<app-breadcrumb [breadcrumbs]="breadcrumbs"></app-breadcrumb>-->

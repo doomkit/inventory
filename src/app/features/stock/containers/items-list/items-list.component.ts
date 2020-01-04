@@ -32,7 +32,7 @@ import { InStock } from '@app/core/models/interfaces/in-stock';
 									(quantityChanged)="loadStocks()">
 								</app-stock-item>
               </div>
-              <div *ngIf="!stockItems.length" class="column has-text-centered">
+              <div *ngIf="!stockItems?.length" class="column has-text-centered">
                 <span class="delayed-text">No items to display</span>
               </div>
             </div>

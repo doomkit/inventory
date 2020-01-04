@@ -1,5 +1,5 @@
-import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
-import { StockItem, Stock } from '@app/core/models';
+import { Component, Output, EventEmitter, Input } from '@angular/core';
+import { StockItem } from '@app/core/models';
 
 @Component({
   selector: 'app-add-item-modal',
@@ -11,7 +11,7 @@ import { StockItem, Stock } from '@app/core/models';
       <div class="modal-background"></div>
       <div class="modal-card">
         <header class="modal-card-head">
-          <p class="modal-card-title">Delete item</p>
+          <p class="modal-card-title">Add item to stock</p>
           <button
             class="delete"
             aria-label="close"
@@ -23,7 +23,6 @@ import { StockItem, Stock } from '@app/core/models';
             <p class="control has-icons-left has-icons-right">
               <input
                 [(ngModel)]="searchQuery"
-                [disabled]="loading"
                 class="input"
                 type="text"
                 placeholder="Search"
@@ -47,7 +46,7 @@ import { StockItem, Stock } from '@app/core/models';
             </thead>
             <tbody>
               <tr
-                *ngFor="let item of items | search: 'name':searchQuery"
+                *ngFor="let item of items | search: 'description':searchQuery"
                 [ngClass]="{ 'is-selected': item === selectedItem }"
               >
                 <th>{{ item.itemId }}</th>
@@ -72,57 +71,43 @@ import { StockItem, Stock } from '@app/core/models';
             Cancel
           </button>
           <button
-            class="button is-small is-danger"
+            class="button is-small is-link"
             (click)="closeModal(false)"
-            [ngClass]="{ 'is-loading': loading }"
             [disabled]="!selectedItem"
           >
-            Delete
+            Add
           </button>
         </footer>
       </div>
     </div>
   `,
-  styleUrls: ['./add-item-modal.component.css']
+  styleUrls: ['./add-item-modal.component.scss']
 })
-export class AddItemModalComponent implements OnInit {
+export class AddItemModalComponent {
   @Output() close: EventEmitter<any> = new EventEmitter();
   @Input() items: StockItem[];
   opened: boolean = false;
   searchQuery: string = '';
   selectedItem: StockItem;
-  loading: boolean = false;
-
-  constructor() {}
-
-  ngOnInit() {}
 
   public openModal(): void {
     this.opened = true;
   }
 
-  selectItem(item: StockItem) {
-    if (this.selectedItem === item) {
-      this.selectedItem = null;
-      return;
+  selectItem(item: StockItem): void {
+    if (this.selectedItem) {
+      this.selectedItem = undefined;
+    } else {
+      this.selectedItem = item;
     }
-    this.selectedItem = item;
   }
 
   closeModal(canceled: boolean): void {
     if (!canceled && this.selectedItem) {
       this.close.emit(this.selectedItem);
-      this.loading = true;
-      setTimeout(() => {
-        this.loading = false;
-        this.opened = false;
-        this.searchQuery = '';
-        this.selectItem = null;
-      }, 1000);
-    } else {
-      this.opened = false;
-      this.searchQuery = '';
-      this.selectItem = null;
     }
+    this.opened = false;
+    this.searchQuery = '';
+    this.selectItem = undefined;
   }
 }

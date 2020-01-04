@@ -6,6 +6,7 @@ import {
 import { StockItem } from '@app/core/models';
 import { Observable } from 'rxjs';
 import { StockItemsService } from '@app/core/services';
+import { first } from 'rxjs/operators';
 
 @Component({
   selector: 'app-control-panel',
@@ -104,10 +105,22 @@ export class ControlPanelComponent {
   }
 
   onCreateModalClose(item: StockItem) {
-    this.stockItemsService.createStockItem(item);
+    this.stockItemsService
+      .createStockItem(item)
+      .pipe(first())
+      .subscribe(
+        data => {},
+        err => console.error(err)
+      );
   }
 
   onDeleteModalClose(item: StockItem) {
-    this.stockItemsService.deleteStockItem(item);
+    this.stockItemsService
+      .deleteStockItem(item)
+      .pipe(first())
+      .subscribe(
+        data => {},
+        err => console.error(err)
+      );
   }
 }

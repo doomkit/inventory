@@ -1,6 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
 import { Stock, StockItem } from '@app/core/models';
-import { Observable } from 'rxjs';
 import { StockService, StockItemsService } from '@app/core/services';
 import { AddItemModalComponent } from '../../components';
 import { first } from 'rxjs/operators';
@@ -29,27 +28,43 @@ export class StockListComponent {
   addModal: AddItemModalComponent;
   stocks: Stock[];
   stockItems: StockItem[];
+  selectedStock: Stock;
 
   constructor(
     private stockService: StockService,
     private stockItemService: StockItemsService
   ) {
-    this.loadAllItems();
+    stockService
+      .getStocks()
+      .pipe(first())
+      .subscribe(data => (this.stocks = data));
   }
 
   onModalOpen(stock: Stock) {
+    this.selectedStock = stock;
     let inStockIds = stock.inStock.map(inStock => inStock.item.itemId);
-    this.stockItems = this.stockItems.filter(item => {
-      let target = inStockIds.find(id => id === item.itemId);
-      if (target) {
-        return false;
-      }
-      return true;
-    });
+    this.stockItemService
+      .getItems()
+      .pipe(first())
+      .subscribe(data => {
+        this.stockItems = data.filter(item => {
+          let target = inStockIds.find(id => id === item.itemId);
+          if (target) {
+            return false;
+          }
+          return true;
+        });
+      });
     this.addModal.openModal();
   }
 
-  onModalClose(event) {}
+  onModalClose(selectedItem: StockItem) {
+    this.stockItems = [];
+    this.stockService
+      .addItemToSotck(this.selectedStock.stockId, selectedItem.itemId)
+      .pipe(first())
+      .subscribe(data => console.log(data));
+  }
 
   private loadAllItems(): void {
     this.stockItemService
