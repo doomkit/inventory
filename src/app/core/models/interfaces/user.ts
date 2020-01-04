@@ -10,7 +10,9 @@ export interface User {
   surname: string;
   photo: string;
   type: UserRole;
-  token?: string;
+  jwtResponse: {
+    token?: string;
+  };
   companyId?: number;
   companyName?: string;
   companyLogo?: string;
